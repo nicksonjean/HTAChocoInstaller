@@ -1,0 +1,9 @@
+---
+- run: choco install nodejs
+- run: choco install git
+- run: choco install curl
+- run: choco install xampp-80
+- run: choco install dbeaver
+- run: choco install mysql.workbench
+- run: choco install postman
+- run: choco install microsoft-teams

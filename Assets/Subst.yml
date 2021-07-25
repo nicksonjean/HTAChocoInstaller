@@ -1,0 +1,13 @@
+---
+- letter: F
+  path: D:/Projetos
+  label: Projetos
+- letter: G
+  path: D:/Cursos
+  label: Cursos
+- letter: H
+  path: D:/Músicas
+  label: Músicas
+- letter: I
+  path: D:/Filmes & Series
+  label: Filmes & Series
