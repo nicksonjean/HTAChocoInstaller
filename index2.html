@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      // https://stackoverflow.com/questions/10585029/parse-an-html-string-with-js
+      // https://nordicapis.com/10-free-to-use-cors-proxies/
+      // http://www.whateverorigin.org/
+      // https://allorigins.win/
+
+      class FetchPackage {
+        #proxyURLAllOrigins = "https://api.allorigins.win/get?url=";
+        #proxyURLThingProxy = "https://api.allorigins.win/get?url="; //"https://thingproxy.freeboard.io/fetch/";
+        #proxyURLChosed = "";
+        #packageName = "";
+        packageList = [];
+
+        #parseHTML = (markup) => {
+          if (markup.toLowerCase().trim().indexOf("<!doctype") === 0) {
+            var doc = document.implementation.createHTMLDocument("");
+            doc.documentElement.innerHTML = markup;
+            return doc;
+          } else if ("content" in document.createElement("template")) {
+            var el = document.createElement("template");
+            el.innerHTML = markup;
+            return el.content;
+          } else {
+            var docfrag = document.createDocumentFragment();
+            var el = document.createElement("body");
+            el.innerHTML = markup;
+            for (i = 0; 0 < el.childNodes.length; ) {
+              docfrag.appendChild(el.childNodes[i]);
+            }
+            return docfrag;
+          }
+        };
+
+        fetchPackageList = (packageName) => {
+          const repoURL = "https://community.chocolatey.org";
+          const packageNameRegex = /(.*)<.*>.*<\/.*>/gm;
+          const packageVersionRegex = /.*<.*>(.*)<\/.*>/gm;
+          const packageImageRegex = /file:\/{1,}[A-Z]\:/gm;
+          this.#packageName = packageName;
+          const loadBalance = (min, max) => {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+          };
+          const parsePackageName = (proxyURL, packageName) => {
+            return (
+              proxyURL +
+              encodeURIComponent(
+                repoURL + "/packages?q=" + packageName.replace(/\s{1,}/gm, "+")
+              )
+            );
+          };
+          this.#proxyURLChosed =
+            loadBalance(1, 2) === 1
+              ? this.#proxyURLAllOrigins
+              : this.#proxyURLThingProxy;
+          return fetch(parsePackageName(this.#proxyURLChosed, packageName))
+            .then((response) => {
+              const contentType = response.headers.get("content-type");
+              if (
+                contentType &&
+                contentType.indexOf("application/json") !== -1
+              ) {
+                return response.json();
+              } else {
+                return response.text();
+              }
+            })
+            .then((data) => {
+              const parse_html = this.#parseHTML(data.contents ?? data);
+              const list = parse_html.querySelectorAll(".package-list-view li");
+              for (let item of list) {
+                if (
+                  item.querySelector("a.h5") &&
+                  item.querySelector("div.input-group input")
+                ) {
+                  let packageObject = {
+                    packageName: item
+                      .querySelector("a.h5")
+                      .innerHTML.replace(packageNameRegex, "$1"),
+                    packageVersion: item
+                      .querySelector("a.h5")
+                      .innerHTML.replace(packageVersionRegex, "$1"),
+                    packageIcon:
+                      repoURL +
+                      item
+                        .querySelector("img")
+                        .src.replace(packageImageRegex, ""),
+                    packageCommand: item.querySelector("input").value,
+                  };
+                  this.packageList.push(packageObject);
+                }
+              }
+              return this.packageList;
+            });
+        };
+      }
+
+      const fetchPackageInstance = new FetchPackage();
+      const package = fetchPackageInstance.fetchPackageList("vscode");
+      package.then((data) => {
+        data.forEach((item) => console.log(item));
+      });
+
+      //https://stackoverflow.com/questions/43521856/cross-domain-javascript-calls-using-jsonp-or-cors
+      //https://stackoverflow.com/questions/36568923/cors-error-with-ajax-request
+    </script>
+  </body>
+</html>
