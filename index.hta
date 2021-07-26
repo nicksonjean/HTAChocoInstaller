@@ -12,7 +12,7 @@
   <!--<meta property="og:image" content="image.png">-->
   <link rel="icon" href="./assets/favicon.ico">
   <!--<link rel="icon" href="/favicon.svg" type="image/svg+xml">-->
-    <title>Brownie Marijuana - v0.1</title>
+  <title>Brownie Marijuana - v0.1</title>
 
   <!-- angularjs -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
@@ -112,9 +112,9 @@
   </div><!-- /container -->
 
   <script type="text/javascript">
-    var maconha = JSON.parse(Retorno)
-    for(var k in maconha.packages) {
-      console.log(maconha.packages[k].packageName + " - " + maconha.packages[k].packageIcon + " - " + maconha.packages[k].packageVersion);
+    var InstalledPackage = JSON.parse(InstalledPackages)
+    for(var k in InstalledPackage.packages) {
+      console.log(InstalledPackage.packages[k].packageName + " - " + InstalledPackage.packages[k].packageIcon + " - " + InstalledPackage.packages[k].packageVersion);
     }
   </script>
 </body>
@@ -131,7 +131,7 @@
     NAVIGABLE       = "no"
     INNERBORDER     = "no"
     SCROLL          = "yes"
-    SELECTION       = "no"
+    SELECTION       = "yes"
     SINGLEINSTANCE  = "yes"
     MAXIMIZEBUTTON  = "no"
     MINIMIZEBUTTON  = "no"

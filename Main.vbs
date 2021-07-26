@@ -9,7 +9,7 @@
 ' Call Require("./Libs/Functions.vbs")
 ' Call Require("./Libs/Extensions/Run.vbs")
 
-Function ImportedCMDAndWaitSync()
+Function RunCMDAndWaitSync()
   Dim Instance, ExportedCMDAndWaitSync, RegEx, Match, Matches, PackageList, PackageNumber, JSONObj, ArrayObj, TextLine, TextColumn, EachLine, Line, URLChoco
   Set Instance = New Run
   ExportedCMDAndWaitSync = Instance.CMDAndWaitSync("choco list --local-only", "choco_installed_packages.txt")
@@ -48,10 +48,10 @@ Function ImportedCMDAndWaitSync()
   JSONObj = JSONObj & "}"
   JSONObj = Mid(JSONObj,1,Len(JSONObj) - 3) & "]}"
 
-  ImportedCMDAndWaitSync = JSONObj
+  RunCMDAndWaitSync = JSONObj
   'Wscript.Echo Retorno
   Set Instance = Nothing
 End Function
 
-Dim Retorno
-Retorno = ImportedCMDAndWaitSync()
+Dim InstalledPackages
+InstalledPackages = RunCMDAndWaitSync()
