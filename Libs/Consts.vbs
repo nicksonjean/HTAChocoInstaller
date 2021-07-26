@@ -19,13 +19,29 @@ Function CurrentTimeStamp()
 End Function
 
 Function CurrentFile()
-	CurrentFile = WScript.ScriptFullName
+	' CurrentFile = WScript.ScriptFullName
+	Dim WshShell, CurPath, WshFSO, ObjFolder, ObjFiles, IdxFile, ArrayFiles
+	set WshShell = CreateObject("WScript.Shell")
+	CurPath = WshShell.Currentdirectory
+	Set WshFSO = CreateObject("Scripting.FileSystemObject")
+	Set ObjFolder = WshFSO.GetFolder(CurPath)  
+	Set ObjFiles = ObjFolder.Files
+	Set ArrayFiles = CreateObject("System.Collections.ArrayList")
+	For each IdxFile In ObjFiles  
+		ArrayFiles.Add WshFSO.GetAbsolutePathName(IdxFile)
+		Next
+	CurrentFile = ArrayFiles(0)	
 End Function
 
 Function CurrentDirectory()
-	CurrentDirectory = Replace(WScript.ScriptFullName, WScript.ScriptName,"")
+	' CurrentDirectory = Replace(WScript.ScriptFullName, WScript.ScriptName,"")
+	CurrentDirectory = CreateObject("Scripting.FileSystemObject").GetAbsolutePathName(".") & "\"
 End Function
 
-Dim CURFILE : Set CURFILE = GetRef("CurrentFile")
-Dim CURDIR : Set CURDIR = GetRef("CurrentDirectory")
-Dim TIMESTAMP : Set TIMESTAMP = GetRef("CurrentTimeStamp")
+Dim CURFILE : CURFILE = GetRef("CurrentFile")
+Dim CURDIR : CURDIR = GetRef("CurrentDirectory")
+Dim TIMESTAMP : TIMESTAMP = GetRef("CurrentTimeStamp")
+
+' Wscript.Echo CURFILE
+' Wscript.Echo CURDIR
+' Wscript.Echo TIMESTAMP

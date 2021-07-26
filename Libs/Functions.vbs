@@ -82,3 +82,7 @@ Sub WriteLog(Message)
 	LogFile.WriteLine "[Log]" & " " & "[" & TIMESTAMP & "]" & " " & "{" & Chr(34) & "Message" & Chr(34) & ":" & Chr(34) & Message & Chr(34) & "}"
 	LogFile.Close
 End Sub
+
+Sub Sleep(lngDelay)
+	CreateObject("WScript.Shell").Run "Timeout /T " & lngDelay & " /nobreak", 0, True
+End Sub
