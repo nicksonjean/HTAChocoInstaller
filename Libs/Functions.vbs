@@ -43,9 +43,7 @@ End Function
 
 Function Slice (aInput, Byval aStart, Byval aEnd)
 	If IsArray(aInput) Then
-		Dim i
-		Dim intStep
-		Dim arrReturn
+		Dim i, intStep, arrReturn
 		If aStart < 0 Then
 			aStart = aStart + Ubound(aInput) + 1
 		End If
@@ -70,3 +68,17 @@ Function Slice (aInput, Byval aStart, Byval aEnd)
 		Slice = Null
 	End If
 End Function
+
+Sub WriteLog(Message)
+	Const FOR_APPENDING = 8
+	Dim WshFSO, LogFile, PathDir
+	PathDir = CURDIR & "Log.log"
+	Set WshFSO = CreateObject("Scripting.FileSystemObject")
+	If WshFSO.FileExists(PathDir) Then
+		Set LogFile = WshFSO.OpenTextFile(PathDir, FOR_APPENDING, True, True)
+	Else
+		Set LogFile = WshFSO.CreateTextFile(PathDir, False, True)
+	End If
+	LogFile.WriteLine "[Log]" & " " & "[" & TIMESTAMP & "]" & " " & "{" & Chr(34) & "Message" & Chr(34) & ":" & Chr(34) & Message & Chr(34) & "}"
+	LogFile.Close
+End Sub

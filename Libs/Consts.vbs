@@ -1,5 +1,5 @@
-' Consts.vbs
-' VBScript add new constansts in VBS
+' Log.vbs
+' VBScript for add a log file
 ' Author Nickson Jeanmerson
 ' Version 0.0.1 - 26/Jun/2021
 ' ----------------------------------------'

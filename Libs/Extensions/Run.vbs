@@ -98,7 +98,6 @@ End Class
 ' ExportedCMDAndWaitSync = Instance.CMD("choco list --local-only")
 ' ExportedCMDAndWaitSync = Instance.CMDAndWait("choco list --local-only")
 ' ExportedCMDAndWaitSync = Instance.CMDAndWaitSync("choco list --local-only", "choco_installed_packages.txt")
-
 ' Wscript.Echo ExportedCMDAndWaitSync
 ' Set Instance = Nothing
 ' Set ExportedCMDAndWaitSync = Nothing
