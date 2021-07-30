@@ -1,154 +1,30 @@
-<html lang="en" ng-app="Marijuana">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=9">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SPA for Fetch, List, Install and Uninstall chocolatey Packages">
-  <meta name="author" content="Nickson Jeanmerson & Stefferson Thallys">
-  <meta property="og:title" content="Brownie Marijuana - v0.1">
-  <meta property="og:type" content="SPA">
-  <meta property="og:url" content="https://www.sitepoint.com/a-basic-html5-template/">
-  <meta property="og:description" content="SPA for Fetch, List, Install and Uninstall chocolatey Packages">
-  <meta property="og:image" content="./Assets/favicon.png">
-  <link rel="icon" href="./Assets/favicon.ico">
-  <link rel="icon" href="./Assets/favicon.svg" type="image/svg+xml">
-  <title>Brownie Marijuana - v0.1</title>
-
-  <!-- angularjs -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-
-  <!-- bootstrap CSS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- font-awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-
-  <script type="text/vbscript">
-      Sub window_onload()
-        'CenterWindow 520, 600
-        TheaterMode()
-        htaConsole.toggle()
-      End Sub     
-      Sub TheaterMode()
-        window.resizeTo screen.availWidth,screen.availHeight
-        window.moveTo 0, 0
-      End Sub
-      Sub CenterWindow( widthX, heightY )
-        self.ResizeTo widthX, heightY 
-        self.MoveTo (screen.availWidth - widthX)/2, (screen.availHeight - heightY)/2
-      End Sub
-  </script>
-
-  <script type="text/vbscript" src="./Libs/Functions.vbs"></script>
-  <script type="text/vbscript" src="./Libs/Extensions/Run.vbs"></script>
-  <script type="text/vbscript" src="./Main.vbs"></script>
-
-  <script type="text/vbscript">
-    Sub Msg(byval key, byval value)
-      MsgBox key & ":" & value, vbInformation, "VBScript!"
-    End Sub
-  </script>
-
-  <script>
-    var app = angular.module("Marijuana", []);
-
-    app.factory("WebApi", function($http){
-      var jsonData = {};
-      jsonData.getFeedId = function(callback){
-        $http.jsonp("http://zipcloud.ibsnet.co.jp/api/search?zipcode=1620825&callback=JSON_CALLBACK")
-        .success(function(data){
-          callback(data);
-        })
-        .error(function(data){
-          alert("APIデータ取得失敗");
-        })
-      }
-      return jsonData;
-    });
-
-    app.controller("controller", ["$scope", "WebApi", function($scope, WebApi){
-      WebApi.getFeedId(function(data){
-        $scope.items = data.results;
-      });
-    }]);
-
-  </script>
-</head>
-
-<body ng-controller="controller">
-  <script src="./Libs/HTAConsole.js"></script>
-
-  <div class="container">
-    <div class="jumbotron">
-      <h1>HTA + AngularJS + JSONP</h1>
-      <p>時々、VBScript</p>
-    </div>
-
-    <div id="maconha"></div>
-
-    <div class="page-header">
-      <h2><i class="fa fa-star fa-fw fa-spin"></i>JSOPで取得したデータ</h2>
-    </div>
-    <pre>{{ items }}</pre>
-
-    <div class="page-header">
-      <h2><i class="fa fa-star fa-fw fa-spin"></i>AngularJS で展開して VBScript のMsgBox表示</h2>
-    </div>
-    <ul ng-repeat="item in items" class="list-group">
-      <li ng-repeat="(key, value) in item" class="list-group-item">
-
-      <h3>
-        <span class="label label-success">key</span> {{ key }}
-        <span class="label label-danger">value</span> {{ value }}
-      </h3>
-
-      <form>
-        <input type="hidden" name="textbox1" value="{{ key }}" />
-        <input type="hidden" name="textbox2" value="{{ value }}" />
-        <button type="button" class="btn btn-lg btn-info" onclick="vbscript:Msg(textbox1.value, textbox2.value)">click me!</button>
-      </form>
-      </li>
-    </ul>
-  </div><!-- /container -->
-
-  <script type="text/javascript">
-    var InstalledPackage = JSON.parse(InstalledPackages)
-    for(var k in InstalledPackage.packages) {
-      console.log(InstalledPackage.packages[k].packageName + " - " + InstalledPackage.packages[k].packageIcon + " - " + InstalledPackage.packages[k].packageVersion);
+<!DOCTYPE html>
+<html>
+  <head>
+  <hta:application
+    id="Marijuana"
+    applicationname="Brownie Marijuana - v0.1"
+    icon="./assets/favicon/favicon.ico"
+    borderstyle="normal"
+    border="thin"  
+    caption="yes"
+    contextmenu="no"
+    sysmenu="yes"
+    navigable="yes"
+    innerborder="no"
+    scroll="yes"
+    selection="yes"
+    singleinstance="yes"
+    maximizebutton="no"
+    minimizebutton="no"
+    windowstate="maximize"
+    showintaskbar="yes"    
+  >
+  <script type="text/Javascript">
+    onload = function() {
+      document.location.href = 'index.html'
     }
   </script>
-</body>
+  </head>
+  <body></body>
 </html>
-
-<HTA:APPLICATION 
-    ID="Marijuana"
-    APPLICATIONNAME="Brownie Marijuana - v0.1"
-    ICON="./assets/favicon.ico"
-    BORDERSTYLE     = "normal"
-    CAPTION         = "yes"
-    CONTEXTMENU     = "no"
-    SYSMENU         = "yes"
-    NAVIGABLE       = "no"
-    INNERBORDER     = "no"
-    SCROLL          = "yes"
-    SELECTION       = "yes"
-    SINGLEINSTANCE  = "yes"
-    MAXIMIZEBUTTON  = "no"
-    MINIMIZEBUTTON  = "no"
-    WINDOWSTATE     = "normal"
-    SHOWINTASKBAR   = "yes"
->
-
-<!--
-Include File Architect
-https://www.ti-enxame.com/pt/vbscript/como-faco-para-incluir-um-arquivo-comum-no-vbscript-semelhante-ao-c-include/958068326/
-JSON
-http://demon.tw/my-work/vbs-json.html#code
-https://www.ti-enxame.com/pt/json/alguma-boa-biblioteca-para-analisar-json-no-asp-classico/967245783/
-ASP-Extreme-Evolution
-https://github.com/nagaozen/asp-xtreme-evolution/
-Run VBS in Another VBS
-https://www.ti-enxame.com/pt/vbscript/executar-um-vbscript-de-outro-vbscript/968962358/
-Delay
-https://www.ti-enxame.com/pt/vbscript/como-definir-o-atraso-no-vbscript/968936123/
--->

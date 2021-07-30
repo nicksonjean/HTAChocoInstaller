@@ -10,7 +10,7 @@
 ' Call Require("./Libs/Extensions/Run.vbs")
 
 Function RunCMDAndWaitSync()
-  Dim Instance, ExportedCMDAndWaitSync, RegEx, Match, Matches, PackageList, PackageNumber, JSONObj, ArrayObj, TextLine, TextColumn, EachLine, Line, URLChoco
+  Dim Instance, ExportedCMDAndWaitSync, RegEx, Match, Matches, PackageList, PackageNumber, JSONObj, ArrayObj, TextLine, TextColumn, EachLine, Line, IIfIcon, PackageIcon, DefaultIcon, Extension
   Set Instance = New Run
   ExportedCMDAndWaitSync = Instance.CMDAndWaitSync("choco list --local-only", "choco_installed_packages.txt")
 
@@ -22,10 +22,11 @@ Function RunCMDAndWaitSync()
 
   PackageNumber = Match.SubMatches(1)
   PackageList = RegEx.Replace(ExportedCMDAndWaitSync, "")
+  DefaultChocoURL = "https://community.chocolatey.org/"
+  RepositoryIcon = DefaultChocoURL & "content/packageimages/"
 
   TextLine = Split(PackageList, vbCrLf)
   TextLine = Slice(TextLine, 1, -1)
-  URLChoco = "https://community.chocolatey.org/content/packageimages/"
   EachLine = 0
   JSONObj ="{"
   JSONObj = JSONObj & Chr(34) & "package_lenght" & Chr(34) & ":" & PackageNumber & ","
@@ -34,10 +35,26 @@ Function RunCMDAndWaitSync()
     'If EachLine >= IIf(True, 1, 0) AND Trim(Line) <> "" Then
     If Trim(Line) <> "" Then
       TextColumn = Split(Line, " ")
+      PackageIcon = RepositoryIcon & TextColumn(0) & "." & TextColumn(1)
+      DefaultIcon = DefaultChocoURL & "Content/Images/packageDefaultIcon-50x50.png"
+      ' IIfIcon = IIf(URLExists(PackageIcon), PackageIcon, DefaultIcon)
+      If URLExists(PackageIcon & ".png") Then
+        IIfIcon = PackageIcon & ".png"
+      ElseIf URLExists(PackageIcon & ".svg") Then
+        IIfIcon = PackageIcon & ".svg"
+      ' ElseIf URLExists(PackageIcon & ".bmp") Then
+      '   IIfIcon = PackageIcon & ".bmp"
+      ' ElseIf URLExists(PackageIcon & ".gif") Then
+      '   IIfIcon = PackageIcon & ".gif"
+      ' ElseIf URLExists(PackageIcon & ".jpg") Then
+      '   IIfIcon = PackageIcon & ".jpg"
+      Else
+        IIfIcon = DefaultIcon
+      End IF
       ArrayObj = ""
       ArrayObj = ArrayObj & "{"
       ArrayObj = ArrayObj & Chr(34) & "packageName" & Chr(34) & ":" & Chr(34) & TextColumn(0) & Chr(34) & ","
-      ArrayObj = ArrayObj & Chr(34) & "packageIcon" & Chr(34) & ":" & Chr(34) & URLChoco & TextColumn(0) & "." & TextColumn(1) & ".png" & Chr(34) & ","
+      ArrayObj = ArrayObj & Chr(34) & "packageIcon" & Chr(34) & ":" & Chr(34) & IIfIcon & Chr(34) & ","
       ArrayObj = ArrayObj & Chr(34) & "packageVersion" & Chr(34) & ":" & Chr(34) & TextColumn(1) & Chr(34)
       ArrayObj = ArrayObj & "},"
       JSONObj = JSONObj & ArrayObj
@@ -49,9 +66,9 @@ Function RunCMDAndWaitSync()
   JSONObj = Mid(JSONObj,1,Len(JSONObj) - 3) & "]}"
 
   RunCMDAndWaitSync = JSONObj
-  'Wscript.Echo Retorno
   Set Instance = Nothing
 End Function
 
 Dim InstalledPackages
 InstalledPackages = RunCMDAndWaitSync()
+' Wscript.Echo InstalledPackages

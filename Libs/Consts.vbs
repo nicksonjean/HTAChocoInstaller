@@ -42,6 +42,6 @@ Dim CURFILE : CURFILE = GetRef("CurrentFile")
 Dim CURDIR : CURDIR = GetRef("CurrentDirectory")
 Dim TIMESTAMP : TIMESTAMP = GetRef("CurrentTimeStamp")
 
-' Wscript.Echo CURFILE
-' Wscript.Echo CURDIR
-' Wscript.Echo TIMESTAMP
+Wscript.Echo CURFILE
+Wscript.Echo CURDIR
+Wscript.Echo TIMESTAMP

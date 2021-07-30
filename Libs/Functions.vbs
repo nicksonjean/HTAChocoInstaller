@@ -86,3 +86,13 @@ End Sub
 Sub Sleep(lngDelay)
 	CreateObject("WScript.Shell").Run "Timeout /T " & lngDelay & " /nobreak", 0, True
 End Sub
+
+function URLExists(URL)
+	Dim Obj
+	Set Obj = CreateObject("MSXML2.XMLHTTP")
+	On Error Resume Next
+	Obj.open "GET", URL, False
+	Obj.send
+	if Obj.Status = 200 then URLExists = True
+	On Error GoTo 0 
+End Function
