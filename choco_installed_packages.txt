@@ -25,3 +25,7 @@ visualstudio-installer 2.0.1
 visualstudio2017-workload-vctools 1.3.3
 visualstudio2017buildtools 15.9.36.0
 25 packages installed.
+
+Did you know Pro / Business automatically syncs with Programs and
+ Features? Learn more about Package Synchronizer at
+ https://chocolatey.org/compare
