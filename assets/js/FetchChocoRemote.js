@@ -1,65 +1,8 @@
-var ajax = {};
-ajax.x = function () {
-  if (typeof XMLHttpRequest !== "undefined") {
-    return new XMLHttpRequest();
-  }
-  var versions = [
-    "MSXML2.XmlHttp.6.0",
-    "MSXML2.XmlHttp.5.0",
-    "MSXML2.XmlHttp.4.0",
-    "MSXML2.XmlHttp.3.0",
-    "MSXML2.XmlHttp.2.0",
-    "Microsoft.XmlHttp",
-  ];
+if (window.NodeList && !NodeList.prototype.forEach)
+  NodeList.prototype.forEach = Array.prototype.forEach;
 
-  var xhr;
-  for (var i = 0; i < versions.length; i++) {
-    try {
-      xhr = new ActiveXObject(versions[i]);
-      break;
-    } catch (e) {}
-  }
-  return xhr;
-};
-
-ajax.send = function (url, callback, method, data, async) {
-  if (async === undefined) {
-    async = true;
-  }
-  var x = ajax.x();
-  x.open(method, url, async);
-  x.onreadystatechange = function () {
-    if (x.readyState == 4) {
-      callback(x.responseText);
-    }
-  };
-  if (method == "POST") {
-    x.setRequestHeader(
-      "Content-type",
-      "application/x-www-form-urlencoded"
-    );
-  }
-  x.send(data);
-};
-
-ajax.get = function (url, data, callback, async) {
-  var query = [];
-  for (var key in data) {
-    query.push(
-      encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-    );
-  }
-  ajax.send(
-    url + (query.length ? "?" + query.join("&") : ""),
-    callback,
-    "GET",
-    null,
-    async
-  );
-};
-
-var RemotelyPackages = [],
-  ChocoURLJS = "https://community.chocolatey.org";
+var RemotelyPackages = [];
+var ChocoURLJS = "https://community.chocolatey.org";
 
 function parseHTML(markup) {
   if (markup.toLowerCase().trim().indexOf("<!doctype") === 0) {
@@ -101,7 +44,8 @@ function fetchPackageList(packageName) {
   return ajax.get(
     parsePackageName(proxyURLChosed, packageName),
     null,
-    fetchList
+    fetchList,
+    false
   );
 }
 
@@ -114,26 +58,25 @@ function fetchList(data) {
     packageVersionRegex = /.*<.*>(.*)<\/.*>/gm,
     packageImageRegex = /file:\/{1,}[A-Z]\:/gm;
 
-    for (var i = 0; i < list.length; i++) {
+  return list.forEach(function (item, i) {
     if (
-      list[i].querySelector("a.h5") &&
-      list[i].querySelector("div.input-group input")
+      item.querySelector("a.h5") &&
+      item.querySelector("div.input-group input")
     ) {
       var packageObject = {
-        packageName: list[i]
+        packageName: item
           .querySelector("a.h5")
           .innerHTML.replace(packageNameRegex, "$1")
           .trim(),
-        packageVersion: list[i]
+        packageVersion: item
           .querySelector("a.h5")
           .innerHTML.replace(packageVersionRegex, "$1"),
         packageIcon:
           ChocoURLJS +
-          list[i].querySelector("img").src.replace(packageImageRegex, ""),
-        packageCommand: list[i].querySelector("input").value,
+          item.querySelector("img").src.replace(packageImageRegex, ""),
+        packageCommand: item.querySelector("input").value,
       };
       RemotelyPackages.push(packageObject);
     }
-  }
-  return RemotelyPackages;
+  });
 }

@@ -10,14 +10,14 @@
     />
     <meta name="author" content="Nickson Jeanmerson & Stefferson Thallys" />
     <meta property="og:title" content="Brownie Marijuana - v0.1" />
-    <meta property="og:type" content="SPA" />
+    <meta property="og:type" content="WebApp" />
     <meta
       property="og:url"
-      content="https://www.sitepoint.com/a-basic-html5-template/"
+      content="https://github.com/nicksonjean/WebAppChocoManager"
     />
     <meta
       property="og:description"
-      content="SPA for Fetch, List, Install and Uninstall chocolatey Packages"
+      content="WebApp for Fetch, List, Install and Uninstall chocolatey Packages"
     />
     <meta property="og:image" content="./assets/favicon/favicon.png" />
     <link rel="icon" href="./assets/favicon/favicon.ico" />
@@ -57,42 +57,19 @@
     </script>
   </head>
 
-  <body ng-controller="controller">
+  <body>
     <script src="./assets/js/HTAConsole.js"></script>
+    <script src="./assets/js/Ajax.js"></script>
     <script src="./assets/js/FetchChocoRemote.js"></script>
     <script type="text/vbscript" src="./libs/Functions.vbs"></script>
     <script type="text/vbscript" src="./libs/Extensions/Run.vbs"></script>
     <script type="text/vbscript" src="./Main.vbs"></script>
-    <script type="text/javascript">
-      function doSearch() {
-        fetchPackageList("adobe");
-        for (var k in RemotelyPackages) {
-          console.log(
-            RemotelyPackages[k].packageName +
-              " - " +
-              RemotelyPackages[k].packageVersion +
-              " - " +
-              RemotelyPackages[k].packageIcon +
-              " - " +
-              RemotelyPackages[k].packageVersion
-          );
-        }
-      }
-      var app = angular.module("Marijuana", []);
-      app.controller("controller", [
-        "$scope",
-        function ($scope) {
-          return ($scope.items = JSON.parse(InstalledPackages));
-        },
-      ]);
-    </script>
 
-    <!-- FIXED: Identificar BUG de Largura -->
     <div class="container-fluid p-0 m-0">
       <div class="container-xxl px-0">
         <div class="row m-2 align-items-center">
           <div class="col-lg-6 col-md-8 px-0 mx-auto">
-            <form>
+            <form ng-controller="remotelyPackagesController">
               <div class="row m-0">
                 <label for="packageSearch" class="m-0">Pacotes</label>
                 <div class="input-group">
@@ -106,7 +83,7 @@
                     <button
                       class="btn btn-primary"
                       type="button"
-                      onclick="javascript:doSearch()"
+                      ng-click="doSearch()"
                     >
                       Buscar <i class="fa fa-search"></i>
                     </button>
@@ -116,63 +93,68 @@
                   id="packageSearchHelpBlock"
                   class="form-text text-muted m-0"
                 >
-                  --validation_message--
-                  <!-- TODO Substituir --validation_message-- pelas validações -->
+                  {{ errorMessage }}
                 </small>
               </div>
+              {{ remotelyApps }}
             </form>
           </div>
         </div>
 
-        <div ng-repeat="item in items" class="row align-items-center mx-0 px-1">
+        <div ng-controller="installedPackagesController">
           <div
-            ng-repeat="(key, value) in item"
-            class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-1 py-1"
+            ng-repeat="item in installedApps"
+            class="row align-items-center mx-0 px-1"
           >
-            <div class="card">
-              <div class="row no-gutters mx-0">
-                <div
-                  class="
-                    col-auto
-                    text-right
-                    p-2
-                    align-items-center
-                    d-flex
-                    justify-content-center
-                    div-img
-                  "
-                >
-                  <img src="{{ value.packageIcon }}" />
-                </div>
-                <div
-                  class="
-                    col
-                    text-left
-                    align-items-center
-                    d-flex
-                    justify-content-center
-                  "
-                >
-                  <div class="card-body pb-0 pl-0 pl-lg-0 pr-2 pt-2">
-                    <h6 class="card-title fw-normal">
-                      {{ value.packageName }} - {{ value.packageVersion }}
-                    </h6>
+            <div
+              ng-repeat="(key, value) in item"
+              class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-1 py-1"
+            >
+              <div class="card">
+                <div class="row no-gutters mx-0">
+                  <div
+                    class="
+                      col-auto
+                      text-right
+                      p-2
+                      align-items-center
+                      d-flex
+                      justify-content-center
+                      div-img
+                    "
+                  >
+                    <img src="{{ value.packageIcon }}" />
+                  </div>
+                  <div
+                    class="
+                      col
+                      text-left
+                      align-items-center
+                      d-flex
+                      justify-content-center
+                    "
+                  >
+                    <div class="card-body pb-0 pl-0 pl-lg-0 pr-2 pt-2">
+                      <h6 class="card-title fw-normal">
+                        {{ value.packageName }} - {{ value.packageVersion }}
+                      </h6>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="card-footer bg-white px-2">
-                <div class="input-group">
-                  <input
-                    type="text"
-                    class="form-control shadow-none"
-                    id="packageSearch"
-                    readonly
-                    value="> choco uninstall {{ value.packageName }}"
-                  />
-                  <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-                      <i class="fa fa-copy"></i>
-                    </button>
+                <div class="card-footer bg-white px-2">
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control shadow-none"
+                      id="packageSearch"
+                      readonly
+                      value="> choco uninstall {{ value.packageName }}"
+                    />
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fa fa-copy"></i>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -181,16 +163,38 @@
         </div>
       </div>
     </div>
-
     <script type="text/javascript">
-      /*
-      onload = function() {
-        var A = {A: 1, B: 2, S: 'Hello world.'}
-        document.body.innerText = JSON.stringify(A, null, 2)
-        var FSO = new ActiveXObject('Scripting.FileSystemObject')
-        alert( FSO.GetAbsolutePathName('.') )
-      }
-      */
+      var app = angular.module("Marijuana", []);
+      app.controller("installedPackagesController", [
+        "$scope",
+        function ($scope) {
+          return ($scope.installedApps = JSON.parse(InstalledPackages));
+        },
+      ]);
+      app.controller("remotelyPackagesController", [
+        "$scope",
+        function ($scope) {
+          $scope.ruleSearch = function (packageSearched) {
+            if (packageSearched.trim().length === 0) {
+              $scope.errorMessage = "Busca não preenchida!";
+              $scope.remotelyApps = null;
+            } else if (packageSearched.trim().length <= 3) {
+              $scope.errorMessage = "Busca inferior a três caracteres!";
+              $scope.remotelyApps = null;
+            } else {
+              var packageName = fetchPackageList(packageSearched);
+              $scope.errorMessage = null;
+              $scope.remotelyApps = RemotelyPackages;
+            }
+            return $scope;
+          };
+          $scope.doSearch = function () {
+            return $scope.ruleSearch(
+              document.getElementById("packageSearch").value
+            );
+          };
+        },
+      ]);
     </script>
     <!--[if gte IE 9]><!-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

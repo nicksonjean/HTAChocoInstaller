@@ -12,7 +12,7 @@
 Function RunCMDAndWaitSync()
   Dim Instance, ExportedCMDAndWaitSync, RegEx, Match, Matches, PackageList, PackageNumber, JSONObj, ArrayObj, TextLine, TextColumn, EachLine, Line, IIfIcon, PackageIcon, DefaultIcon, Extension
   Set Instance = New Run
-  ExportedCMDAndWaitSync = Instance.CMDAndWaitSync("choco list --local-only", "choco_installed_packages.txt")
+  ExportedCMDAndWaitSync = Instance.CMDAndWaitSync("choco list --local-only", ".apps")
 
   Set RegEx = New RegExp
   RegEx.MultiLine = True

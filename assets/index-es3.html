@@ -71,69 +71,13 @@
       <ul id="resultList" style="list-style: none"></ul>
     </div>
 
+    <script src="../assets/js/Ajax.js"></script>
     <script type="text/javascript">
-      var ajax = {};
-      ajax.x = function () {
-        if (typeof XMLHttpRequest !== "undefined") {
-          return new XMLHttpRequest();
-        }
-        var versions = [
-          "MSXML2.XmlHttp.6.0",
-          "MSXML2.XmlHttp.5.0",
-          "MSXML2.XmlHttp.4.0",
-          "MSXML2.XmlHttp.3.0",
-          "MSXML2.XmlHttp.2.0",
-          "Microsoft.XmlHttp",
-        ];
+      if (window.NodeList && !NodeList.prototype.forEach)
+        NodeList.prototype.forEach = Array.prototype.forEach;
 
-        var xhr;
-        for (var i = 0; i < versions.length; i++) {
-          try {
-            xhr = new ActiveXObject(versions[i]);
-            break;
-          } catch (e) {}
-        }
-        return xhr;
-      };
-
-      ajax.send = function (url, callback, method, data, async) {
-        if (async === undefined) {
-          async = true;
-        }
-        var x = ajax.x();
-        x.open(method, url, async);
-        x.onreadystatechange = function () {
-          if (x.readyState == 4) {
-            callback(x.responseText);
-          }
-        };
-        if (method == "POST") {
-          x.setRequestHeader(
-            "Content-type",
-            "application/x-www-form-urlencoded"
-          );
-        }
-        x.send(data);
-      };
-
-      ajax.get = function (url, data, callback, async) {
-        var query = [];
-        for (var key in data) {
-          query.push(
-            encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-          );
-        }
-        ajax.send(
-          url + (query.length ? "?" + query.join("&") : ""),
-          callback,
-          "GET",
-          null,
-          async
-        );
-      };
-
-      var RemotelyPackages = [],
-        ChocoURLJS = "https://community.chocolatey.org";
+      var RemotelyPackages = [];
+      var ChocoURLJS = "https://community.chocolatey.org";
 
       function parseHTML(markup) {
         if (markup.toLowerCase().trim().indexOf("<!doctype") === 0) {
@@ -175,23 +119,26 @@
         return ajax.get(
           parsePackageName(proxyURLChosed, packageName),
           null,
-          fetchList
+          fetchList,
+          false
         );
       }
 
       function fetchList(data) {
-        var response = JSON.parse(data).contents ?? JSON.parse(data),
+        //var response = JSON.parse(data).contents ?? JSON.parse(data),
+        var response = JSON.parse(data).contents,
           parse_html = parseHTML(response),
           list = parse_html.querySelectorAll(".package-list-view li"),
           packageNameRegex = /(.*)<.*>.*<\/.*>/gm,
           packageVersionRegex = /.*<.*>(.*)<\/.*>/gm,
           packageImageRegex = /file:\/{1,}[A-Z]\:/gm;
-        for (var item of list) {
+
+        return list.forEach(function (item, i) {
           if (
             item.querySelector("a.h5") &&
             item.querySelector("div.input-group input")
           ) {
-            let packageObject = {
+            var packageObject = {
               packageName: item
                 .querySelector("a.h5")
                 .innerHTML.replace(packageNameRegex, "$1")
@@ -206,8 +153,7 @@
             };
             RemotelyPackages.push(packageObject);
           }
-        }
-        return RemotelyPackages;
+        });
       }
 
       fetchPackageList("adobe");
