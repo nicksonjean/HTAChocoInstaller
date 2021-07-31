@@ -1,63 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="Marijuana">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="SPA for Fetch, List, Install and Uninstall chocolatey Packages"
-    />
-    <meta name="author" content="Nickson Jeanmerson & Stefferson Thallys" />
-    <meta property="og:title" content="Brownie Marijuana - v0.1" />
-    <meta property="og:type" content="SPA" />
-    <meta
-      property="og:url"
-      content="https://www.sitepoint.com/a-basic-html5-template/"
-    />
-    <meta
-      property="og:description"
-      content="SPA for Fetch, List, Install and Uninstall chocolatey Packages"
-    />
-    <meta property="og:image" content="./assets/favicon/favicon.png" />
-    <link rel="icon" href="./assets/favicon/favicon.ico" />
-    <link rel="icon" href="./assets/favicon/favicon.svg" type="image/svg+xml" />
-    <title>Brownie Marijuana - v0.1</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-      type="text/css"
-    />
-    <link
-      rel="stylesheet"
-      href="./assets/css/bootstrap-v4.3.1.css"
-      type="text/css"
-    />
-    <link
-      rel="stylesheet"
-      href="./assets/css/bootstrap-v5.0.2.css"
-      type="text/css"
-    />
-    <style>
-      /*
-      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-        img[src*=".svg"] {
-          width: 100%; 
-        }
-      }
-      .package-icon {
-        width: 50px;
-        height: 50px;
-      }
-      .package-icon img {
-        margin-left: auto;
-        margin-right: auto;
-        overflow: visible;
-      }
-      */
-    </style>
-    <script type="text/vbscript">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SPA for Fetch, List, Install and Uninstall chocolatey Packages" />
+  <meta name="author" content="Nickson Jeanmerson & Stefferson Thallys" />
+  <meta property="og:title" content="Brownie Marijuana - v0.1" />
+  <meta property="og:type" content="SPA" />
+  <meta property="og:url" content="https://www.sitepoint.com/a-basic-html5-template/" />
+  <meta property="og:description" content="SPA for Fetch, List, Install and Uninstall chocolatey Packages" />
+  <meta property="og:image" content="./assets/favicon/favicon.png" />
+  <link rel="icon" href="./assets/favicon/favicon.ico" />
+  <link rel="icon" href="./assets/favicon/favicon.svg" type="image/svg+xml" />
+  <title>Brownie Marijuana - v0.1</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    type="text/css" />
+  <link rel="stylesheet" href="./assets/css/bootstrap-v4.3.1.css" type="text/css" />
+  <link rel="stylesheet" href="./assets/css/bootstrap-v5.0.2.css" type="text/css" />
+  <link rel="stylesheet" href="./assets/css/style.css" type="text/css" />
+  <script type="text/vbscript">
       Sub window_onload()
         'CenterWindow 520, 600
         'TheaterMode()
@@ -72,115 +36,95 @@
         self.MoveTo (screen.availWidth - widthX)/2, (screen.availHeight - heightY)/2
       End Sub
     </script>
-  </head>
-  <body ng-controller="controller">
-    <script src="./libs/HTAConsole.js"></script>
-    <script type="text/vbscript" src="./libs/Functions.vbs"></script>
-    <script type="text/vbscript" src="./libs/Extensions/Run.vbs"></script>
-    <script type="text/vbscript" src="./Main.vbs"></script>
-    <script type="text/javascript">
-      /*
-      var InstalledPackage = JSON.parse(InstalledPackages)
-      for(var k in InstalledPackage.packages) {
-        console.log(
-          InstalledPackage.packages[k].packageName + " - " + 
-          InstalledPackage.packages[k].packageIcon + " - " + 
-          InstalledPackage.packages[k].packageVersion
-        );
-      }
-      */
-      var app = angular.module("Marijuana", []);
-      app.controller("controller", [
-        "$scope",
-        function ($scope) {
-          return ($scope.items = JSON.parse(InstalledPackages));
-        },
-      ]);
-    </script>
+</head>
 
-    <!-- TODO: FIXME: Identificar BUG de Largura -->
-    <div class="container-fluid p-0 m-0">
-      <div class="container-xxl px-0">
-        <div class="row m-2 align-items-center">
-          <div class="col-lg-6 col-md-8 px-0 mx-auto">
-            <form>
-              <div class="row">
-                <label for="packageSearch" class="m-0">Pacotes</label>
-                <div class="input-group">
-                  <input
-                    type="text"
-                    class="form-control shadow-none"
-                    id="packageSearch"
-                    placeholder="Localize Pacotes"
-                  />
-                  <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-                      Buscar <i class="fa fa-search"></i>
-                    </button>
-                  </div>
+<body ng-controller="controller">
+  <script src="./libs/HTAConsole.js"></script>
+  <script type="text/vbscript" src="./libs/Functions.vbs"></script>
+  <script type="text/vbscript" src="./libs/Extensions/Run.vbs"></script>
+  <script type="text/vbscript" src="./Main.vbs"></script>
+  <script type="text/javascript">
+    /*
+    var InstalledPackage = JSON.parse(InstalledPackages)
+    for(var k in InstalledPackage.packages) {
+      console.log(
+        InstalledPackage.packages[k].packageName + " - " + 
+        InstalledPackage.packages[k].packageIcon + " - " + 
+        InstalledPackage.packages[k].packageVersion
+      );
+    }
+    */
+    var app = angular.module("Marijuana", []);
+    app.controller("controller", [
+      "$scope",
+      function ($scope) {
+        return ($scope.items = JSON.parse(InstalledPackages));
+      },
+    ]);
+  </script>
+
+  <!-- TODO: FIXME: Identificar BUG de Largura -->
+  <div class="container-fluid p-0 m-0">
+    <div class="container-xxl px-0">
+      <div class="row m-2 align-items-center">
+        <div class="col-lg-6 col-md-8 px-0 mx-auto">
+          <form>
+            <div class="row m-0">
+              <label for="packageSearch" class="m-0">Pacotes</label>
+              <div class="input-group">
+                <input type="text" class="form-control shadow-none" id="packageSearch" placeholder="Localize Pacotes" />
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="button">
+                    Buscar <i class="fa fa-search"></i>
+                  </button>
                 </div>
-                <small
-                  id="packageSearchHelpBlock"
-                  class="form-text text-muted m-0"
-                >
-                  --validation_message--
-                  <!-- TODO: FIXME: Substituir --validation_message-- pelas validações -->
-                </small>
               </div>
-            </form>
-          </div>
+              <small id="packageSearchHelpBlock" class="form-text text-muted m-0">
+                --validation_message--
+                <!-- TODO Substituir --validation_message-- pelas validações -->
+              </small>
+            </div>
+          </form>
         </div>
+      </div>
 
-        <div ng-repeat="item in items" class="row align-items-center mx-0 px-1">
-          <div
-            ng-repeat="(key, value) in item"
-            class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-1 py-1"
-          >
-            <div class="card">
-              <div class="row no-gutters mx-0">
-                <div
-                  class="
-                    col-auto
-                    text-right
-                    p-2
-                    align-items-center
-                    d-flex
-                    justify-content-center
-                    package-icon
-                  "
-                >
-                  <img height="50" width="50" src="{{ value.packageIcon }}" />
-                </div>
-                <div
-                  class="
+      <div ng-repeat="item in items" class="row align-items-center mx-0 px-1">
+        <div ng-repeat="(key, value) in item" class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-1 py-1">
+          <div class="card">
+            <div class="row no-gutters mx-0">
+              <div class="
+                col-auto
+                text-right
+                p-2
+                align-items-center
+                d-flex
+                justify-content-center
+                div-img
+                ">
+                <img src="{{ value.packageIcon }}" />
+              </div>
+              <div class="
                     col
                     text-left
                     align-items-center
                     d-flex
                     justify-content-center
-                  "
-                >
-                  <div class="card-body pb-0 pl-0 pl-lg-0 pr-2 pt-2">
-                    <h6 class="card-title fw-normal">
-                      {{ value.packageName }} - {{ value.packageVersion }}
-                    </h6>
-                  </div>
+                  ">
+                <div class="card-body pb-0 pl-0 pl-lg-0 pr-2 pt-2">
+                  <h6 class="card-title fw-normal">
+                    {{ value.packageName }} - {{ value.packageVersion }}
+                  </h6>
                 </div>
               </div>
-              <div class="card-footer bg-white px-2">
-                <div class="input-group">
-                  <input
-                    type="text"
-                    class="form-control shadow-none"
-                    id="packageSearch"
-                    readonly
-                    value="> choco uninstall {{ value.packageName }}"
-                  />
-                  <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-                      <i class="fa fa-copy"></i>
-                    </button>
-                  </div>
+            </div>
+            <div class="card-footer bg-white px-2">
+              <div class="input-group">
+                <input type="text" class="form-control shadow-none" id="packageSearch" readonly
+                  value="> choco uninstall {{ value.packageName }}" />
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="button">
+                    <i class="fa fa-copy"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -188,28 +132,30 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <script type="text/javascript">
-      /*
-      onload = function() {
-        var A = {A: 1, B: 2, S: 'Hello world.'}
-        document.body.innerText = JSON.stringify(A, null, 2)
-        var FSO = new ActiveXObject('Scripting.FileSystemObject')
-        alert( FSO.GetAbsolutePathName('.') )
-      }
-      */
-    </script>
-    <!--[if gte IE 9]><!-->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!--<![endif]-->
-    <!--[if IE 9]>
+  <script type="text/javascript">
+    /*
+    onload = function() {
+      var A = {A: 1, B: 2, S: 'Hello world.'}
+      document.body.innerText = JSON.stringify(A, null, 2)
+      var FSO = new ActiveXObject('Scripting.FileSystemObject')
+      alert( FSO.GetAbsolutePathName('.') )
+    }
+    */
+  </script>
+  <!--[if gte IE 9]><!-->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!--<![endif]-->
+  <!--[if IE 9]>
       <script src="https://cdn.jsdelivr.net/gh/coliff/bootstrap-ie8/js/bootstrap-ie9.min.js"></script>
     <![endif]-->
-    <!--[if lte IE 8]>
+  <!--[if lte IE 8]>
       <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
       <script src="https://cdn.jsdelivr.net/gh/coliff/bootstrap-ie8/js/bootstrap-ie8.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.js"></script>
     <![endif]-->
-  </body>
+</body>
+
 </html>
