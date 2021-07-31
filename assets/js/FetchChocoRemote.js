@@ -33,20 +33,10 @@ function fetchPackageList(packageName) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
   var parsePackageName = function (proxyURL, packageName) {
-    return (
-      proxyURL +
-      encodeURIComponent(
-        ChocoURLJS + "/packages?q=" + packageName.replace(/\s{1,}/gm, "+")
-      )
-    );
+    return (proxyURL + encodeURIComponent(ChocoURLJS + "/packages?q=" + packageName.replace(/\s{1,}/gm, "+")));
   };
   var proxyURLChosed = proxies[loadBalance(0, 1)];
-  return ajax.get(
-    parsePackageName(proxyURLChosed, packageName),
-    null,
-    fetchList,
-    false
-  );
+  return ajax.get( parsePackageName(proxyURLChosed, packageName), null, fetchList, false);
 }
 
 function fetchList(data) {
@@ -59,21 +49,11 @@ function fetchList(data) {
     packageImageRegex = /file:\/{1,}[A-Z]\:/gm;
 
   return list.forEach(function (item, i) {
-    if (
-      item.querySelector("a.h5") &&
-      item.querySelector("div.input-group input")
-    ) {
+    if (item.querySelector("a.h5") && item.querySelector("div.input-group input")) {
       var packageObject = {
-        packageName: item
-          .querySelector("a.h5")
-          .innerHTML.replace(packageNameRegex, "$1")
-          .trim(),
-        packageVersion: item
-          .querySelector("a.h5")
-          .innerHTML.replace(packageVersionRegex, "$1"),
-        packageIcon:
-          ChocoURLJS +
-          item.querySelector("img").src.replace(packageImageRegex, ""),
+        packageName: item.querySelector("a.h5").innerHTML.replace(packageNameRegex, "$1").trim(),
+        packageVersion: item.querySelector("a.h5").innerHTML.replace(packageVersionRegex, "$1"),
+        packageIcon: ChocoURLJS + item.querySelector("img").src.replace(packageImageRegex, ""),
         packageCommand: item.querySelector("input").value,
       };
       RemotelyPackages.push(packageObject);

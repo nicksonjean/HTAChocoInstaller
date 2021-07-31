@@ -34,10 +34,7 @@ ajax.send = function (url, callback, method, data, async) {
     }
   };
   if (method == "POST") {
-    x.setRequestHeader(
-      "Content-type",
-      "application/x-www-form-urlencoded"
-    );
+    x.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   }
   x.send(data);
 };
@@ -45,25 +42,15 @@ ajax.send = function (url, callback, method, data, async) {
 ajax.get = function (url, data, callback, async) {
   var query = [];
   for (var key in data) {
-    query.push(
-      encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-    );
+    query.push(encodeURIComponent(key) + "=" + encodeURIComponent(data[key]));
   }
-  ajax.send(
-    url + (query.length ? "?" + query.join("&") : ""),
-    callback,
-    "GET",
-    null,
-    async
-  );
+  ajax.send(url + (query.length ? "?" + query.join("&") : ""), callback, "GET", null, async);
 };
 
 ajax.post = function (url, data, callback, async) {
   var query = [];
   for (var key in data) {
-    query.push(
-      encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-    );
+    query.push(encodeURIComponent(key) + "=" + encodeURIComponent(data[key]));
   }
   ajax.send(url, callback, "POST", query.join("&"), async);
 };

@@ -4,41 +4,20 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="SPA for Fetch, List, Install and Uninstall chocolatey Packages"
-    />
+    <meta name="description" content="SPA for Fetch, List, Install and Uninstall chocolatey Packages" />
     <meta name="author" content="Nickson Jeanmerson & Stefferson Thallys" />
     <meta property="og:title" content="Brownie Marijuana - v0.1" />
     <meta property="og:type" content="WebApp" />
-    <meta
-      property="og:url"
-      content="https://github.com/nicksonjean/WebAppChocoManager"
-    />
-    <meta
-      property="og:description"
-      content="WebApp for Fetch, List, Install and Uninstall chocolatey Packages"
-    />
+    <meta property="og:url" content="https://github.com/nicksonjean/WebAppChocoManager" />
+    <meta property="og:description" content="WebApp for Fetch, List, Install and Uninstall chocolatey Packages" />
     <meta property="og:image" content="./assets/favicon/favicon.png" />
     <link rel="icon" href="./assets/favicon/favicon.ico" />
     <link rel="icon" href="./assets/favicon/favicon.svg" type="image/svg+xml" />
     <title>Brownie Marijuana - v0.1</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-      type="text/css"
-    />
-    <link
-      rel="stylesheet"
-      href="./assets/css/bootstrap-v4.3.1.css"
-      type="text/css"
-    />
-    <link
-      rel="stylesheet"
-      href="./assets/css/bootstrap-v5.0.2.css"
-      type="text/css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="./assets/css/bootstrap-v4.3.1.css" type="text/css" />
+    <link rel="stylesheet" href="./assets/css/bootstrap-v5.0.2.css" type="text/css" />
     <link rel="stylesheet" href="./assets/css/style.css" type="text/css" />
     <script type="text/vbscript">
       Sub window_onload()
@@ -67,89 +46,43 @@
 
     <div class="container-fluid p-0 m-0">
       <div class="container-xxl px-0">
-        <div class="row m-2 align-items-center">
-          <div class="col-lg-6 col-md-8 px-0 mx-auto">
-            <form ng-controller="remotelyPackagesController">
-              <div class="row m-0">
-                <label for="packageSearch" class="m-0">Pacotes</label>
-                <div class="input-group">
-                  <input
-                    type="text"
-                    class="form-control shadow-none"
-                    id="packageSearch"
-                    placeholder="Localize Pacotes"
-                  />
-                  <div class="input-group-append">
-                    <button
-                      class="btn btn-primary"
-                      type="button"
-                      ng-click="doSearch()"
-                    >
-                      Buscar <i class="fa fa-search"></i>
-                    </button>
+        <div ng-controller="remotelyPackagesController">
+          <div class="row m-2 align-items-center">
+            <div class="col-lg-6 col-md-8 px-0 mx-auto">
+              <form>
+                <div class="row m-0">
+                  <label for="packageSearch" class="m-0">Pacotes</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control shadow-none" id="packageSearch" placeholder="Localize Pacotes" />
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button" ng-click="doSearch()">Buscar <i class="fa fa-search"></i></button>
+                    </div>
                   </div>
+                  <small id="packageSearchHelpBlock" class="form-text text-muted m-0"> {{ errorMessage }} </small>
                 </div>
-                <small
-                  id="packageSearchHelpBlock"
-                  class="form-text text-muted m-0"
-                >
-                  {{ errorMessage }}
-                </small>
-              </div>
-              {{ remotelyApps }}
-            </form>
+                {{ remotelyApps }}
+              </form>
+            </div>
           </div>
         </div>
 
         <div ng-controller="installedPackagesController">
-          <div
-            ng-repeat="item in installedApps"
-            class="row align-items-center mx-0 px-1"
-          >
-            <div
-              ng-repeat="(key, value) in item"
-              class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-1 py-1"
-            >
+          <div ng-repeat="item in installedApps" class="row align-items-center mx-0 px-1">
+            <div ng-repeat="(key, value) in item" class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-1 py-1">
               <div class="card">
                 <div class="row no-gutters mx-0">
-                  <div
-                    class="
-                      col-auto
-                      text-right
-                      p-2
-                      align-items-center
-                      d-flex
-                      justify-content-center
-                      div-img
-                    "
-                  >
+                  <div class="col-auto text-right p-2 align-items-center d-flex justify-content-center div-img">
                     <img src="{{ value.packageIcon }}" />
                   </div>
-                  <div
-                    class="
-                      col
-                      text-left
-                      align-items-center
-                      d-flex
-                      justify-content-center
-                    "
-                  >
+                  <div class="col text-left align-items-center d-flex justify-content-center">
                     <div class="card-body pb-0 pl-0 pl-lg-0 pr-2 pt-2">
-                      <h6 class="card-title fw-normal">
-                        {{ value.packageName }} - {{ value.packageVersion }}
-                      </h6>
+                      <h6 class="card-title fw-normal">{{ value.packageName }} - {{ value.packageVersion }}</h6>
                     </div>
                   </div>
                 </div>
                 <div class="card-footer bg-white px-2">
                   <div class="input-group">
-                    <input
-                      type="text"
-                      class="form-control shadow-none"
-                      id="packageSearch"
-                      readonly
-                      value="> choco uninstall {{ value.packageName }}"
-                    />
+                    <input type="text" class="form-control shadow-none" id="packageSearch" readonly value="> choco uninstall {{ value.packageName }}" />
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="button">
                         <i class="fa fa-copy"></i>
@@ -189,9 +122,7 @@
             return $scope;
           };
           $scope.doSearch = function () {
-            return $scope.ruleSearch(
-              document.getElementById("packageSearch").value
-            );
+            return $scope.ruleSearch(document.getElementById("packageSearch").value);
           };
         },
       ]);
