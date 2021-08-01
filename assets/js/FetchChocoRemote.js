@@ -46,19 +46,32 @@ function fetchList(data) {
     list = parse_html.querySelectorAll(".package-list-view li"),
     packageNameRegex = /(.*)<.*>.*<\/.*>/gm,
     packageVersionRegex = /.*<.*>(.*)<\/.*>/gm,
-    packageImageRegex = /file:\/{1,}[A-Z]\:/gm;
+    packageImageRegex = /file:\/{1,}[A-Z]\:/gm,
+    PackageNumber = 0,
+    JSONObj = "",
+    ArrayObj,
+    Chr34 = String.fromCharCode(34);
 
-  return list.forEach(function (item, i) {
+  JSONObj = "{";
+  JSONObj = JSONObj + Chr34 + "packages" + Chr34 + ":" + "[";
+
+  list.forEach(function (item, i) {
     if (item.querySelector("a.h5") && item.querySelector("div.input-group input")) {
-      var packageObject = [
-        {
-          packageName: item.querySelector("a.h5").innerHTML.replace(packageNameRegex, "$1").trim(),
-          packageVersion: item.querySelector("a.h5").innerHTML.replace(packageVersionRegex, "$1"),
-          packageIcon: ChocoURLJS + item.querySelector("img").src.replace(packageImageRegex, ""),
-          packageCommand: item.querySelector("input").value,
-        },
-      ];
-      RemotelyPackages.push(packageObject);
+      ArrayObj = "";
+      ArrayObj = ArrayObj + "{";
+      ArrayObj = ArrayObj + Chr34 + "packageName" + Chr34 + ":" + Chr34 + item.querySelector("a.h5").innerHTML.replace(packageNameRegex, "$1").trim() + Chr34 + ",";
+      ArrayObj = ArrayObj + Chr34 + "packageVersion" + Chr34 + ":" + Chr34 + item.querySelector("a.h5").innerHTML.replace(packageVersionRegex, "$1") + Chr34 + ",";
+      ArrayObj = ArrayObj + Chr34 + "packageIcon" + Chr34 + ":" + Chr34 + ChocoURLJS + item.querySelector("img").src.replace(packageImageRegex, "") + Chr34 + ",";
+      ArrayObj = ArrayObj + Chr34 + "packageCommand" + Chr34 + ":" + Chr34 + item.querySelector("input").value + Chr34;
+      ArrayObj = ArrayObj + "},";
+      JSONObj = JSONObj + ArrayObj;
+      PackageNumber++;
     }
   });
+
+  JSONObj = JSONObj + "]";
+  JSONObj = JSONObj.substring(0, JSONObj.length - 2) + "],";
+  JSONObj = JSONObj + Chr34 + "package_lenght" + Chr34 + ":" + PackageNumber + "";
+  JSONObj = JSONObj + "}";
+  return (RemotelyPackages = JSONObj);
 }

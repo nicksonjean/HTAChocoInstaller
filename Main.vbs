@@ -31,7 +31,6 @@ Function RunCMDAndWaitSync()
   TextLine = Slice(TextLine, 1, -1)
   EachLine = 0
   JSONObj ="{"
-  JSONObj = JSONObj & Chr(34) & "package_lenght" & Chr(34) & ":" & PackageNumber & ","
   JSONObj = JSONObj & Chr(34) & "packages" & Chr(34) & ":" & "["
   For Each Line In TextLine
     'If EachLine >= IIf(True, 1, 0) AND Trim(Line) <> "" Then
@@ -65,9 +64,9 @@ Function RunCMDAndWaitSync()
     EachLine = EachLine + 1
   Next
   JSONObj = JSONObj & "]"
+  JSONObj = Mid(JSONObj,1,Len(JSONObj) - 2) & "],"
+  JSONObj = JSONObj & Chr(34) & "package_lenght" & Chr(34) & ":" & PackageNumber & ""  
   JSONObj = JSONObj & "}"
-  JSONObj = Mid(JSONObj,1,Len(JSONObj) - 3) & "]}"
-
   RunCMDAndWaitSync = JSONObj
   Set Instance = Nothing
 End Function
