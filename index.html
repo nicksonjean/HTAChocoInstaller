@@ -49,11 +49,10 @@
   <div class="container-fluid p-0 m-0" style="background-color: black;">
     <div class="container-xxl px-0" style="background-color: blue;">
       <div ng-controller="remotelyPackagesController" style="background-color: plum;">
-        <textarea>{{ remotelyApps }}</textarea>
         <div class="row m-2 align-items-center" style="background-color: yellow;">
           <div class="col-lg-6 col-md-8 px-0 mx-auto" style="background-color: red;">
             <label for="packageSearch" class="m-0">Pacotes</label>
-            <div class="input-group">
+            <div class="input-group search">
               <input type="text" class="form-control shadow-none" id="packageSearch" placeholder="Localize Pacotes" />
               <div class="input-group-append">
                 <button class="btn btn-primary" type="button" ng-click="doSearch()">Buscar <i
@@ -66,11 +65,12 @@
       </div>
 
       <div ng-controller="installedPackagesController">
-        <textarea>{{ installedApps }}</textarea>
-        <div ng-repeat="item in installedApps" class="row align-items-center mx-0 px-1">
-          <div ng-repeat="(key, value) in item" class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-1 py-1">
-            <div class="card">
-              <div class="row no-gutters mx-0">
+        <div ng-repeat="item in installedApps" class="row align-items-center mx-0 px-1"
+          style="background-color: magenta;">
+          <div ng-repeat="(key, value) in item" class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-1 py-1"
+            style="background-color: red;">
+            <div class="card" style="background-color: peru">
+              <div class="row no-gutters mx-0" style="background-color: green;">
                 <div class="col-auto text-right p-2 align-items-center d-flex justify-content-center div-img">
                   <img src="{{ value.packageIcon }}" />
                 </div>
