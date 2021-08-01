@@ -47,26 +47,23 @@
     <div class="container-fluid p-0 m-0">
       <div class="container-xxl px-0">
         <div ng-controller="remotelyPackagesController">
+          <textarea>{{ remotelyApps }}</textarea>
           <div class="row m-2 align-items-center">
             <div class="col-lg-6 col-md-8 px-0 mx-auto">
-              <form>
-                <div class="row m-0">
-                  <label for="packageSearch" class="m-0">Pacotes</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control shadow-none" id="packageSearch" placeholder="Localize Pacotes" />
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button" ng-click="doSearch()">Buscar <i class="fa fa-search"></i></button>
-                    </div>
-                  </div>
-                  <small id="packageSearchHelpBlock" class="form-text text-muted m-0"> {{ errorMessage }} </small>
+              <label for="packageSearch" class="m-0">Pacotes</label>
+              <div class="input-group">
+                <input type="text" class="form-control shadow-none" id="packageSearch" placeholder="Localize Pacotes" />
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="button" ng-click="doSearch()">Buscar <i class="fa fa-search"></i></button>
                 </div>
-                {{ remotelyApps }}
-              </form>
+              </div>
+              <small id="packageSearchHelpBlock" class="form-text text-muted m-0"> {{ errorMessage }} </small>
             </div>
           </div>
         </div>
 
         <div ng-controller="installedPackagesController">
+          <textarea>{{ installedApps }}</textarea>
           <div ng-repeat="item in installedApps" class="row align-items-center mx-0 px-1">
             <div ng-repeat="(key, value) in item" class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-1 py-1">
               <div class="card">
@@ -82,7 +79,7 @@
                 </div>
                 <div class="card-footer bg-white px-2">
                   <div class="input-group">
-                    <input type="text" class="form-control shadow-none" id="packageSearch" readonly value="> choco uninstall {{ value.packageName }}" />
+                    <input type="text" class="form-control shadow-none" id="packageSearch" readonly value="{{ value.packageCommand }}" />
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="button">
                         <i class="fa fa-copy"></i>
@@ -96,6 +93,11 @@
         </div>
       </div>
     </div>
+    <script type="text/vbscript">
+      Sub Msg(byval key, byval value)
+        MsgBox key & ":" & value, vbInformation, "VBScript!"
+      End Sub
+    </script>
     <script type="text/javascript">
       var app = angular.module("Marijuana", []);
       app.controller("installedPackagesController", [

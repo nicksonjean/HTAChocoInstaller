@@ -1,0 +1,27 @@
+.container {
+  margin-top: 25px;
+}
+.active {
+  background-color: #1da1f2 !important; 
+}
+.list-group-item .active {
+  font-size: 50px;
+}
+.text-active {
+  background-color: #1da1f2 !important; 
+  font-size: 20px;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+.text-active h4 {
+  color: #FFFFFF !important;
+  font-size: 20px;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+.fa {
+  font-size: 25px;
+  padding-right: 10px;
+}
+.list-group-item {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+}

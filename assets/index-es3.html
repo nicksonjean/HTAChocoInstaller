@@ -44,13 +44,7 @@
               </div>
               <!--end of col-->
               <div class="col-auto">
-                <button
-                  id="getSearch"
-                  class="btn btn-lg btn-success"
-                  type="button"
-                >
-                  Search
-                </button>
+                <button id="getSearch" class="btn btn-lg btn-success" type="button">Search</button>
               </div>
               <!--end of col-->
             </div>
@@ -59,22 +53,13 @@
         <!--end of col-->
       </div>
     </div>
-    <div
-      class="
-        container
-        justify-content-center
-        list-unstyled
-        pt-3
-        package-list-view
-      "
-    >
+    <div class="container justify-content-center list-unstyled pt-3 package-list-view">
       <ul id="resultList" style="list-style: none"></ul>
     </div>
 
     <script src="../assets/js/Ajax.js"></script>
     <script type="text/javascript">
-      if (window.NodeList && !NodeList.prototype.forEach)
-        NodeList.prototype.forEach = Array.prototype.forEach;
+      if (window.NodeList && !NodeList.prototype.forEach) NodeList.prototype.forEach = Array.prototype.forEach;
 
       var RemotelyPackages = [];
       var ChocoURLJS = "https://community.chocolatey.org";
@@ -100,28 +85,15 @@
       }
 
       function fetchPackageList(packageName) {
-        var proxies = [
-          "https://api.allorigins.win/get?url=",
-          "https://api.allorigins.win/get?url=",
-        ];
+        var proxies = ["https://api.allorigins.win/get?url=", "https://api.allorigins.win/get?url="];
         var loadBalance = function (min, max) {
           return Math.floor(Math.random() * (max - min + 1) + min);
         };
         var parsePackageName = function (proxyURL, packageName) {
-          return (
-            proxyURL +
-            encodeURIComponent(
-              ChocoURLJS + "/packages?q=" + packageName.replace(/\s{1,}/gm, "+")
-            )
-          );
+          return proxyURL + encodeURIComponent(ChocoURLJS + "/packages?q=" + packageName.replace(/\s{1,}/gm, "+"));
         };
         var proxyURLChosed = proxies[loadBalance(0, 1)];
-        return ajax.get(
-          parsePackageName(proxyURLChosed, packageName),
-          null,
-          fetchList,
-          false
-        );
+        return ajax.get(parsePackageName(proxyURLChosed, packageName), null, fetchList, false);
       }
 
       function fetchList(data) {
@@ -131,26 +103,19 @@
           list = parse_html.querySelectorAll(".package-list-view li"),
           packageNameRegex = /(.*)<.*>.*<\/.*>/gm,
           packageVersionRegex = /.*<.*>(.*)<\/.*>/gm,
-          packageImageRegex = /file:\/{1,}[A-Z]\:/gm;
+          packageImageRegex = /file:\/{1,}[A-Z]\:/gm,
+          PackageNumber = 0;
 
         return list.forEach(function (item, i) {
-          if (
-            item.querySelector("a.h5") &&
-            item.querySelector("div.input-group input")
-          ) {
-            var packageObject = {
-              packageName: item
-                .querySelector("a.h5")
-                .innerHTML.replace(packageNameRegex, "$1")
-                .trim(),
-              packageVersion: item
-                .querySelector("a.h5")
-                .innerHTML.replace(packageVersionRegex, "$1"),
-              packageIcon:
-                ChocoURLJS +
-                item.querySelector("img").src.replace(packageImageRegex, ""),
-              packageCommand: item.querySelector("input").value,
-            };
+          if (item.querySelector("a.h5") && item.querySelector("div.input-group input")) {
+            var packageObject = [
+              {
+                packageName: item.querySelector("a.h5").innerHTML.replace(packageNameRegex, "$1").trim(),
+                packageVersion: item.querySelector("a.h5").innerHTML.replace(packageVersionRegex, "$1"),
+                packageIcon: ChocoURLJS + item.querySelector("img").src.replace(packageImageRegex, ""),
+                packageCommand: item.querySelector("input").value,
+              },
+            ];
             RemotelyPackages.push(packageObject);
           }
         });

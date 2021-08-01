@@ -1,0 +1,9 @@
+.div-img {
+  width: 50px;
+  height: 60px;
+}
+
+img {
+  vertical-align: middle;
+  max-width: 100%;
+}

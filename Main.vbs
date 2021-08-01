@@ -10,7 +10,7 @@
 ' Call Require("./Libs/Extensions/Run.vbs")
 
 Function RunCMDAndWaitSync()
-  Dim Instance, ExportedCMDAndWaitSync, RegEx, Match, Matches, PackageList, PackageNumber, JSONObj, ArrayObj, TextLine, TextColumn, EachLine, Line, IIfIcon, PackageIcon, DefaultIcon, Extension
+  Dim Instance, ExportedCMDAndWaitSync, RegEx, Match, Matches, PackageList, PackageNumber, JSONObj, ArrayObj, TextLine, TextColumn, EachLine, Line, IIfIcon, PackageIcon, DefaultIcon, Extension, Command, Argument
   Set Instance = New Run
   ExportedCMDAndWaitSync = Instance.CMDAndWaitSync("choco list --local-only", ".apps")
 
@@ -24,6 +24,8 @@ Function RunCMDAndWaitSync()
   PackageList = RegEx.Replace(ExportedCMDAndWaitSync, "")
   DefaultChocoURL = "https://community.chocolatey.org/"
   RepositoryIcon = DefaultChocoURL & "content/packageimages/"
+  Command = "choco uninstall "
+  Argument = " -x"
 
   TextLine = Split(PackageList, vbCrLf)
   TextLine = Slice(TextLine, 1, -1)
@@ -54,8 +56,9 @@ Function RunCMDAndWaitSync()
       ArrayObj = ""
       ArrayObj = ArrayObj & "{"
       ArrayObj = ArrayObj & Chr(34) & "packageName" & Chr(34) & ":" & Chr(34) & TextColumn(0) & Chr(34) & ","
+      ArrayObj = ArrayObj & Chr(34) & "packageVersion" & Chr(34) & ":" & Chr(34) & TextColumn(1) & Chr(34) & ","
       ArrayObj = ArrayObj & Chr(34) & "packageIcon" & Chr(34) & ":" & Chr(34) & IIfIcon & Chr(34) & ","
-      ArrayObj = ArrayObj & Chr(34) & "packageVersion" & Chr(34) & ":" & Chr(34) & TextColumn(1) & Chr(34)
+      ArrayObj = ArrayObj & Chr(34) & "packageCommand" & Chr(34) & ":" & Chr(34) & Command & TextColumn(0) & Argument & Chr(34)
       ArrayObj = ArrayObj & "},"
       JSONObj = JSONObj & ArrayObj
     End If
@@ -72,3 +75,4 @@ End Function
 Dim InstalledPackages
 InstalledPackages = RunCMDAndWaitSync()
 ' Wscript.Echo InstalledPackages
+'choco uninstall ${packageName} -x

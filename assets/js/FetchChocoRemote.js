@@ -50,12 +50,14 @@ function fetchList(data) {
 
   return list.forEach(function (item, i) {
     if (item.querySelector("a.h5") && item.querySelector("div.input-group input")) {
-      var packageObject = {
-        packageName: item.querySelector("a.h5").innerHTML.replace(packageNameRegex, "$1").trim(),
-        packageVersion: item.querySelector("a.h5").innerHTML.replace(packageVersionRegex, "$1"),
-        packageIcon: ChocoURLJS + item.querySelector("img").src.replace(packageImageRegex, ""),
-        packageCommand: item.querySelector("input").value,
-      };
+      var packageObject = [
+        {
+          packageName: item.querySelector("a.h5").innerHTML.replace(packageNameRegex, "$1").trim(),
+          packageVersion: item.querySelector("a.h5").innerHTML.replace(packageVersionRegex, "$1"),
+          packageIcon: ChocoURLJS + item.querySelector("img").src.replace(packageImageRegex, ""),
+          packageCommand: item.querySelector("input").value,
+        },
+      ];
       RemotelyPackages.push(packageObject);
     }
   });
