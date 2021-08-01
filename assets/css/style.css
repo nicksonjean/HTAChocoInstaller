@@ -1,6 +1,7 @@
 .li-img {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 60px;
+  margin: -2px 0 -4px 0 !important;
 }
 .div-img {
   width: 50px;
