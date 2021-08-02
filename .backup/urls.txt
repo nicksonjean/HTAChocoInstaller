@@ -1,0 +1,11 @@
+https://forums.whirlpool.net.au/archive/2505127
+https://social.technet.microsoft.com/Forums/en-US/93fc13a1-9cf2-4ec5-91b2-4fc5216f482a/how-to-run-vbscript-with-local-administrator-permissions?forum=ITCG
+https://www.tek-tips.com/viewthread.cfm?qid=755215
+https://stackoverflow.com/questions/39908214/vba-how-to-open-command-prompt-as-administrator-and-call-a-vbs-using-cscript
+https://newbedev.com/how-to-run-vbs-as-administrator-from-vbs
+https://www.alexcomputerbubble.com/run-a-program-elevated-via-the-right-click-menu-run-as-administrator/
+https://www.itsupportguides.com/knowledge-base/windows-7/windows-7-run-vbs-script-as-elevated-user-uac/
+https://social.technet.microsoft.com/Forums/ie/en-US/eb16c3d0-ff41-4946-ae1a-5b2708516a3d/running-a-vbs-script-with-no-prompt-and-elevated-permissions?forum=ITCG
+https://social.technet.microsoft.com/Forums/en-US/f296fd73-550a-418c-9be0-1b8fbe10786e/execute-a-single-command-line-with-elevated-privileges?forum=ITCG
+https://social.technet.microsoft.com/Forums/scriptcenter/en-US/310e57f9-2367-4293-9f97-53d0e077aacc/vb-script-to-run-a-batch-script-as-admin?forum=ITCG
+https://www.robvanderwoude.com/battech_elevation.php

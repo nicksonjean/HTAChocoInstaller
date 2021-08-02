@@ -19,35 +19,43 @@
     <link rel="stylesheet" href="./assets/css/bootstrap-v4.3.1.css" type="text/css" />
     <link rel="stylesheet" href="./assets/css/bootstrap-v5.0.2.css" type="text/css" />
     <link rel="stylesheet" href="./assets/css/style.css" type="text/css" />
+    <style>
+      .packageName {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    </style>
   </head>
-
   <body>
     <div class="container-fluid p-0 m-0">
       <div class="container-xxl px-0">
         <ctrl ng-controller="remotelyPackagesController">
           <div class="row m-2 align-items-center">
-            <div class="col-lg-6 col-md-8 px-0 mx-auto">
+            <div class="col-lg-6 col-md-8 px-0 mx-auto dropdown-container">
               <label for="packageSearch" class="m-0">Pacotes</label>
               <div class="input-group search">
-                <input type="text" class="form-control shadow-none" id="packageSearch" placeholder="Localize Pacotes" />
+                <input type="text" class="form-control shadow-none" id="packageSearched" placeholder="Localize Pacotes" />
                 <div class="input-group-append">
-                  <button class="btn btn-primary" type="button" ng-click="doSearch()">Buscar <i class="fa fa-search"></i></button>
+                  <button class="btn btn-primary" title="Localizar Pacotes" ng-click="doSearch()">Buscar <i class="fa fa-search"></i></button>
                 </div>
               </div>
               <small id="packageSearchHelpBlock" class="form-text text-muted m-0"> {{ errorMessage }} </small>
             </div>
           </div>
-
-          <div class="row m-2 align-items-center">
+          <div class="row m-2 align-items-center dropdown-container">
             <div class="col-lg-6 col-md-8 px-0 mx-auto">
-              <ul class="list-group search">
+              <ul class="list-group search dropdown-menu">
                 <li ng-repeat="value in remotelyApps.packages" class="list-group-item d-flex flex-row-reverse justify-content-between align-items-center p-0">
-                  <div class="align-self-center ms-auto">
-                    <button class="btn btn-primary mx-2" title="{{ value.packageCommand }}" type="button">
-                      <i class="fa fa-copy"></i>
-                    </button>
+                  <div class="align-self-center ms-auto mx-2">
+                    <form>
+                      <input type="hidden" name="packageToInstall" value="{{ value.packageCommand }}" />
+                      <button class="btn btn-primary" title="{{ value.packageCommand }}" onclick="vbscript:Run(packageToInstall.value)">
+                        <i class="fa fa-download"></i>
+                      </button>
+                    </form>
                   </div>
-                  <div>{{ value.packageName }} - {{ value.packageVersion }}</div>
+                  <div class="packageName">{{ value.packageName }} - {{ value.packageVersion }}</div>
                   <div class="col-auto p-2 align-items-center d-flex justify-content-center li-img"><img src="{{ value.packageIcon }}" /></div>
                 </li>
               </ul>
@@ -70,14 +78,16 @@
                   </div>
                 </div>
                 <div class="card-footer bg-white px-2">
-                  <div class="input-group">
-                    <input type="text" class="form-control shadow-none" id="packageSearch" readonly value="{{ value.packageCommand }}" />
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fa fa-copy"></i>
-                      </button>
+                  <form>
+                    <div class="input-group">
+                      <input type="text" name="packageToUninstall" class="form-control shadow-none" readonly value="{{ value.packageCommand }}" />
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" title="{{ value.packageCommand }}" onclick="vbscript:Run(packageToUninstall.value)">
+                          <i class="fa fa-trash-o"></i>
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -101,10 +111,11 @@
         "$scope",
         function ($scope) {
           $scope.ruleSearch = function (packageSearched) {
+            $scope.remotelyApps = null;
             if (packageSearched.trim().length === 0) {
               $scope.errorMessage = "Busca não preenchida!";
               $scope.remotelyApps = null;
-            } else if (packageSearched.trim().length <= 3) {
+            } else if (packageSearched.trim().length < 3) {
               $scope.errorMessage = "Busca inferior a três caracteres!";
               $scope.remotelyApps = null;
             } else {
@@ -115,13 +126,32 @@
             return $scope;
           };
           $scope.doSearch = function () {
-            return $scope.ruleSearch(document.getElementById("packageSearch").value);
+            return $scope.ruleSearch(document.getElementById("packageSearched").value);
+          };
+          $scope.doInstall = function () {
+            console.log(this.value.packageCommand);
           };
         },
       ]);
     </script>
+    <script type="text/vbscript">
+      Sub Run(key)
+        MsgBox key, vbInformation, "VBScript!"
+      End Sub
+    </script>
     <!--[if gte IE 9]><!-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+      $(function () {
+        $(document).on("click", function (event) {
+          var $trigger = $(".dropdown-container");
+          if ($trigger !== event.target && !$trigger.has(event.target).length) {
+            $(".dropdown-menu li").remove();
+          }
+        });
+      });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
     <!--<![endif]-->
     <!--[if IE 9]>
