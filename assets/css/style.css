@@ -1,7 +1,7 @@
 .li-img {
   width: 50px;
   height: 60px;
-  margin: -2px 0 -4px 0 !important;
+  /* margin: -2px 0 -4px 0 !important; */
 }
 .div-img {
   width: 50px;
@@ -21,11 +21,48 @@ img {
   padding: 0.75rem 1.25rem;
   margin-bottom: -1px;
   background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.125) !important;
 }
 
 @media screen and (min-width: 800px) {
   .search {
     padding: 0 0.1rem 0 0.15rem;
   }
+}
+
+li {
+  border: 1px solid rgba(0, 0, 0, 0.125) !important;
+  transition: all 0.3s ease-in-out;
+}
+
+li:hover {
+  background-color: #e9ecef;
+  transform: scale(1.05);
+  border-color: #0b5ed7 !important;
+  z-index: 100;
+}
+
+.animation {
+  transition: all 0.3s ease-in-out;
+}
+
+.animation:hover {
+  transform: scale(1.05);
+  border-color: #0b5ed7;
+}
+
+.packageName {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+#listSearch {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  top: -21px !important;
+}
+
+#packageSearchHelpBlock {
+  height: 21px;
 }
