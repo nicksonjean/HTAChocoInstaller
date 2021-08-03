@@ -38,11 +38,13 @@ li:hover {
   background-color: #e9ecef;
   transform: scale(1.05);
   border-color: #0b5ed7 !important;
+  border-radius: 5px;
   z-index: 100;
 }
 
 .animation {
   transition: all 0.3s ease-in-out;
+  box-shadow: 0 3px 20px -2px rgb(20 45 100 / 50%);
 }
 
 .animation:hover {
