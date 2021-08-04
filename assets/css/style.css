@@ -1,7 +1,16 @@
+body {
+  scrollbar-base-color: #c0c0c0;
+  scrollbar-face-color: #cccccc;
+  scrollbar-3dlight-color: #c0c0c0;
+  scrollbar-highlight-color: #c0c0c0;
+  scrollbar-track-color: #ffffff;
+  scrollbar-arrow-color: rgb(211, 211, 211);
+  scrollbar-shadow-color: #c0c0c0;
+  scrollbar-dark-shadow-color: #c0c0c0;
+}
 .li-img {
   width: 50px;
   height: 60px;
-  /* margin: -2px 0 -4px 0 !important; */
 }
 .div-img {
   width: 50px;
@@ -23,12 +32,6 @@ img {
   background-color: #fff;
 }
 
-@media screen and (min-width: 800px) {
-  .search {
-    padding: 0 0.1rem 0 0.15rem;
-  }
-}
-
 li {
   border: 1px solid rgba(0, 0, 0, 0.125) !important;
   transition: all 0.3s ease-in-out;
@@ -36,7 +39,6 @@ li {
 
 li:hover {
   background-color: #e9ecef;
-  transform: scale(1.05);
   border-color: #0b5ed7 !important;
   border-radius: 5px;
   z-index: 100;
@@ -48,7 +50,6 @@ li:hover {
 }
 
 .animation:hover {
-  transform: scale(1.05);
   border-color: #0b5ed7;
 }
 
@@ -65,6 +66,82 @@ li:hover {
   top: -21px !important;
 }
 
+.dropdown-menu {
+  overflow-y: hidden;
+  height: 306px;
+}
+
+.dropdown-menu:hover {
+  overflow-y: auto;
+}
+
 #packageSearchHelpBlock {
   height: 21px;
+}
+
+.packageName {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+#divx {
+  background-color: #212529;
+  position: fixed;
+  height: 40px;
+  width: 100%;
+  top: 0;
+  padding-left: 10px;
+  padding-top: 7px;
+  vertical-align: middle;
+  z-index: 9999;
+}
+
+#divMain {
+  margin-top: 80px;
+}
+
+.divxButton {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  font-size: 10pt;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  float: left;
+  margin-right: 8px;
+  color: #fff;
+}
+
+.divxButton:hover {
+  color: #fff;
+  background-color: #5c636a;
+  border-color: #565e64;
+}
+
+#scroll-bar {
+  overflow-y: auto;
+  height: 300px;
+  position: absolute;
+}
+
+@media screen and (min-width: 800px) {
+  .search {
+    padding: 0 0.1rem 0 0.15rem;
+  }
+
+  .animation:hover {
+    transform: scale(1.05);
+    border-color: #0b5ed7;
+  }
 }
