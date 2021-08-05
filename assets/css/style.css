@@ -123,7 +123,8 @@ li:hover {
   border: 1px solid transparent;
   font-size: 10pt;
   border-radius: 0.25rem;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   float: left;
   margin-right: 8px;
   color: #fff;
@@ -179,4 +180,8 @@ li:hover {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+#notFound {
+  color: #c0c0c0;
 }

@@ -37,10 +37,11 @@
           <div class="col-lg-6 col-md-8 px-0 mx-auto dropdown-container">
             <label for="packageSearch" class="m-0">Pacotes</label>
             <div class="input-group search">
-              <input type="text" class="form-control shadow-none" id="packageSearched" placeholder="Localize Pacotes" />
+              <input type="text" class="form-control" id="packageSearched" placeholder="Localize Pacotes" />
               <div class="input-group-append">
-                <button class="btn btn-primary" title="Localizar Pacotes" ng-click="doSearch()">Buscar <i
-                    class="fa fa-search"></i></button>
+                <button class="btn btn-primary" title="Localizar Pacotes" id="buttonSearche"
+                  ng-click="doSearch()">Buscar
+                  <i class="fa fa-search"></i></button>
               </div>
             </div>
             <small id="packageSearchHelpBlock" class="form-text text-muted m-0">{{ errorMessage }}</small>
@@ -49,21 +50,33 @@
         <div class="row m-2 align-items-center dropdown-container">
           <div class="col-lg-6 col-md-8 px-0 mx-auto">
             <ul id="listSearch" class="list-group dropdown-list {{ dropdown }}">
-              <li ng-repeat="value in remotelyApps.packages"
-                class="list-group-item d-flex flex-row-reverse justify-content-between align-items-center p-0">
-                <div class="align-self-center ms-auto mx-2">
-                  <form>
-                    <input type="hidden" name="packageToInstall" value="{{ value.packageCommand }}" />
-                    <button class="btn btn-primary" title="{{ value.packageCommand }}"
-                      onclick="vbscript:Run(packageToInstall.value)">
-                      <i class="fa fa-download"></i>
-                    </button>
-                  </form>
-                </div>
-                <div class="packageName">{{ value.packageName }} - {{ value.packageVersion }}</div>
-                <div class="col-auto p-2 align-items-center d-flex justify-content-center li-img"><img
-                    src="{{ value.packageIcon }}" /></div>
-              </li>
+              <if ng-if="packageFinded === 'true'">
+                <li ng-repeat="value in remotelyApps.packages"
+                  class="list-group-item d-flex flex-row-reverse justify-content-between align-items-center p-0">
+                  <div class="align-self-center ms-auto mx-2">
+                    <form>
+                      <input type="hidden" name="packageToInstall" value="{{ value.packageCommand }}" />
+                      <button class="btn btn-primary" title="{{ value.packageCommand }}"
+                        onclick="vbscript:Exec(packageToInstall.value)">
+                        <i class="fa fa-download"></i>
+                      </button>
+                    </form>
+                  </div>
+                  <div class="packageName"><span class="ellipsis">{{ value.packageName }} - {{ value.packageVersion
+                      }}</span></div>
+                  <div class="col-auto p-2 align-items-center d-flex justify-content-center li-img"><img check-image
+                      ng-src="{{ value.packageIcon }}" /></div>
+                </li>
+              </if>
+              <if ng-if="packageFinded === 'false'">
+                <li class="list-group-item d-flex flex-row-reverse justify-content-between align-items-center p-0">
+                  <div class="align-self-center ms-auto mx-2"></div>
+                  <div class="packageName"><span id="notFound" class="ellipsis">{{ remotelyApps.packageName }}</span>
+                  </div>
+                  <div class="col-auto p-2 align-items-center d-flex justify-content-center li-img"><img check-image
+                      ng-src="{{ remotelyApps.packageIcon }}" /></div>
+                </li>
+              </if>
             </ul>
           </div>
         </div>
@@ -75,7 +88,7 @@
             <div class="card animation">
               <div class="row no-gutters mx-0">
                 <div class="col-auto p-2 align-items-center d-flex justify-content-center div-img">
-                  <img src="{{ value.packageIcon }}" />
+                  <img check-image ng-src="{{ value.packageIcon }}" />
                 </div>
                 <div class="col text-left align-items-center d-flex justify-content-center">
                   <div class="card-body pb-0 pl-0 pl-lg-0 pr-2 pt-2">
@@ -90,7 +103,7 @@
                       value="{{ value.packageCommand }}" />
                     <div class="input-group-append">
                       <button class="btn btn-primary" title="{{ value.packageCommand }}"
-                        onclick="vbscript:Run(packageToUninstall.value)">
+                        onclick="vbscript:Exec(packageToUninstall.value)">
                         <i class="fa fa-trash-o"></i>
                       </button>
                     </div>
