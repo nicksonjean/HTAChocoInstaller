@@ -46,11 +46,9 @@ li:hover {
 
 .animation {
   transition: all 0.3s ease-in-out;
-  /* Needed for IEs */
   -moz-box-shadow: 0px 0px 20px 0px rgba(68, 68, 68, 0.6);
   -webkit-box-shadow: 0px 0px 20px 0px rgba(68, 68, 68, 0.6);
   box-shadow: 0px 3px 20px -2px rgba(20, 45, 100, 0.5);
-
   filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3, MakeShadow=true, ShadowOpacity=0.30);
   -ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
   zoom: 1;
@@ -75,7 +73,9 @@ li:hover {
 
 .dropdown-menu {
   overflow-y: hidden;
-  height: 306px;
+  /*height: 306px;*/
+  min-height: 62px;
+  max-height: 306px;
 }
 
 .dropdown-menu:hover {
@@ -150,4 +150,33 @@ li:hover {
     transform: scale(1.05);
     border-color: #0b5ed7;
   }
+}
+
+#packageSearched {
+  -moz-box-shadow: 0px 0px 20px 0px rgba(68, 68, 68, 0.6);
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(68, 68, 68, 0.6);
+  box-shadow: 0px 0px 30px -2px rgba(20, 45, 100, 0.5);
+
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3, MakeShadow=true, ShadowOpacity=0.30);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
+  zoom: 1;
+}
+
+#buttonSearche {
+  -moz-box-shadow: 0px 0px 20px 0px rgba(68, 68, 68, 0.6);
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(68, 68, 68, 0.6);
+  box-shadow: 3px 0px 30px -2px rgba(20, 45, 100, 0.5);
+
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3, MakeShadow=true, ShadowOpacity=0.30);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
+  zoom: 1;
+}
+
+.packageName {
+  width: 78%;
+}
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }

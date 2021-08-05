@@ -70,7 +70,12 @@ function fetchList(data) {
   });
 
   JSONObj = JSONObj + "]";
-  JSONObj = JSONObj.substring(0, JSONObj.length - 2) + "],";
+  if (PackageNumber > 0) {
+    JSONObj = JSONObj.substring(0, JSONObj.length - 2) + "],";
+  }
+  else {
+    JSONObj = JSONObj + ",";
+  }
   JSONObj = JSONObj + Chr34 + "package_lenght" + Chr34 + ":" + PackageNumber + "";
   JSONObj = JSONObj + "}";
   return (RemotelyPackages = JSONObj);

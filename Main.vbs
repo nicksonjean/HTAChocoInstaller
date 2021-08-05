@@ -6,8 +6,8 @@
 ' 	VbsFile.Close
 ' End Sub
 
-' Call Require("./Libs/Functions.vbs")
-' Call Require("./Libs/Extensions/Run.vbs")
+' Call Require("./libs/Functions.vbs")
+' Call Require("./libs/Extensions/Run.vbs")
 
 Function RunCMDAndWaitSync()
   Dim Instance, ExportedCMDAndWaitSync, RegEx, Match, Matches, PackageList, PackageNumber, JSONObj, ArrayObj, TextLine, TextColumn, EachLine, Line, IIfIcon, PackageIcon, DefaultIcon, Extension, Command, Argument
@@ -64,7 +64,11 @@ Function RunCMDAndWaitSync()
     EachLine = EachLine + 1
   Next
   JSONObj = JSONObj & "]"
-  JSONObj = Mid(JSONObj,1,Len(JSONObj) - 2) & "],"
+  If PackageNumber > 0 Then
+    JSONObj = Mid(JSONObj,1,Len(JSONObj) - 2) & "],"
+  Else
+    JSONObj = JSONObj & ","
+  End If
   JSONObj = JSONObj & Chr(34) & "package_lenght" & Chr(34) & ":" & PackageNumber & ""  
   JSONObj = JSONObj & "}"
   RunCMDAndWaitSync = JSONObj
@@ -74,4 +78,3 @@ End Function
 Dim InstalledPackages
 InstalledPackages = RunCMDAndWaitSync()
 ' Wscript.Echo InstalledPackages
-'choco uninstall ${packageName} -x
