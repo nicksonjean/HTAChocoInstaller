@@ -52,6 +52,10 @@
     <button type="button" class="divxButton">Help</button>
   </div>
   <div id="divMain" class="container-fluid p-0">
+    <label class="switch">
+      <input onclick="darkMode()" id="checkbox" type="checkbox">
+      <span class="slider round"></span>
+    </label>
     <div class="container-xxl px-0">
       <ctrl ng-controller="remotelyPackagesController">
         <div class="row m-2 align-items-center">
@@ -61,7 +65,8 @@
               <input type="text" class="form-control" id="packageSearched" placeholder="Localize Pacotes" />
               <div class="input-group-append">
                 <button class="btn btn-primary" title="Localizar Pacotes" id="buttonSearche"
-                  ng-click="doSearch()">Buscar <i class="fa fa-search"></i></button>
+                  ng-click="doSearch()">Buscar
+                  <i class="fa fa-search"></i></button>
               </div>
             </div>
             <small id="packageSearchHelpBlock" class="form-text text-muted m-0">{{ errorMessage }}</small>
@@ -71,8 +76,8 @@
           <div class="col-lg-6 col-md-8 px-0 mx-auto">
             <ul id="listSearch" class="list-group dropdown-list {{ dropdown }}">
               <if ng-if="packageFinded === 'true'">
-                <li ng-repeat="value in remotelyApps.packages"
-                  class="list-group-item d-flex flex-row-reverse justify-content-between align-items-center p-0">
+                <li id="li1" ng-repeat="value in remotelyApps.packages"
+                  class="input-dark list-group-item d-flex flex-row-reverse justify-content-between align-items-center p-0">
                   <div class="align-self-center ms-auto mx-2">
                     <form>
                       <input type="hidden" name="packageToInstall" value="{{ value.packageCommand }}" />
@@ -84,14 +89,15 @@
                   </div>
                   <div class="packageName"><span class="ellipsis">{{ value.packageName }} - {{ value.packageVersion
                       }}</span></div>
-                  <div class="col-auto p-2 align-items-center d-flex justify-content-center li-img"><img check-image
-                      ng-src="{{ value.packageIcon }}" /></div>
+                  <div class="input-dark col-auto p-2 align-items-center d-flex justify-content-center li-img"><img
+                      check-image ng-src="{{ value.packageIcon }}" /></div>
                 </li>
               </if>
               <if ng-if="packageFinded === 'false'">
-                <li class="list-group-item d-flex flex-row-reverse justify-content-between align-items-center p-0">
+                <li
+                  class="input-dark list-group-item d-flex flex-row-reverse justify-content-between align-items-center p-0">
                   <div class="align-self-center ms-auto mx-2"></div>
-                  <div class="packageName" style="text-align: center;"><span id="notFound" class="ellipsis">{{
+                  <div class="packageName"><span id="notFound" class="ellipsis input-dark">{{
                       remotelyApps.packageName }}</span>
                   </div>
                   <div class="col-auto p-2 align-items-center d-flex justify-content-center li-img"></div>
@@ -105,7 +111,7 @@
       <ctrl ng-controller="installedPackagesController">
         <div class="row align-items-center mx-0 px-1">
           <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-1 py-1" ng-repeat="value in installedApps.packages">
-            <div class="card animation">
+            <div id="dark-card" class="card animation">
               <div class="row no-gutters mx-0">
                 <div class="col-auto p-2 align-items-center d-flex justify-content-center div-img">
                   <img check-image ng-src="{{ value.packageIcon }}" />
@@ -116,10 +122,10 @@
                   </div>
                 </div>
               </div>
-              <div class="card-footer bg-white px-2">
+              <div class="card-footer bg-transparent px-2">
                 <form>
-                  <div class="input-group">
-                    <input type="text" name="packageToUninstall" class="form-control shadow-none" readonly
+                  <div class="div-grey input-dark input-group">
+                    <input type="text" name="packageToUninstall" class="input-dark form-control shadow-none" readonly
                       value="{{ value.packageCommand }}" />
                     <div class="input-group-append">
                       <button class="btn btn-primary" title="{{ value.packageCommand }}"
@@ -207,7 +213,7 @@
               $scope.remotelyApps = JSON.parse(RemotelyPackages);
             } else {
               $scope.packageFinded = "false";
-              $scope.remotelyApps = { packageName: "Nenhum Pacote Encontrado", packageIcon: defIcon };
+              $scope.remotelyApps = { "packageName": "Nenhum Pacote Encontrado" };
             }
           }
           return $scope;
@@ -219,6 +225,41 @@
     ]);
   </script>
   <script type="text/javascript">
+    function darkMode() {
+      var check = document.querySelector("#checkbox");
+      var body = document.querySelector("body");
+      var input = document.querySelector("#packageSearched");
+      var button = document.querySelector("#buttonSearche");
+      var ul = document.querySelector("#listSearch");
+      var card1 = document.getElementsByClassName('card');
+
+      switch (check.checked) {
+        case true:
+          body.classList.add('darkTheme')
+          input.classList.add('input-dark')
+          input.classList.add('dark-card')
+          button.classList.add('dark-card')
+          ul.classList.add('darkThemeUl')
+          if (card1.length > 0) {
+            for (var i = 0; i < card1.length; i++) {
+              card1[i].classList.add('dark-card')
+            };
+          }
+          break;
+        case false:
+          body.classList.remove('darkTheme')
+          input.classList.remove('input-dark')
+          input.classList.remove('dark-card')
+          button.classList.remove('dark-card')
+          ul.classList.remove('darkThemeUl')
+          if (card1.length > 0) {
+            for (var i = 0; i < card1.length; i++) {
+              card1[i].classList.remove('dark-card')
+            };
+          }
+          break;
+      }
+    }
     /*
     var objShell = new ActiveXObject("Shell.Application");
     objShell.ShellExecute("notepad.exe", "", "", "open", 1);
