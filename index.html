@@ -1,27 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="Marijuana">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=10" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SPA for Fetch, List, Install and Uninstall chocolatey Packages" />
-  <meta name="author" content="Nickson Jeanmerson & Stefferson Thallys" />
-  <meta property="og:title" content="Brownie Marijuana - v0.1" />
-  <meta property="og:type" content="WebApp" />
-  <meta property="og:url" content="https://github.com/nicksonjean/WebAppChocoManager" />
-  <meta property="og:description" content="WebApp for Fetch, List, Install and Uninstall chocolatey Packages" />
-  <meta property="og:image" content="./assets/favicon/favicon.png" />
-  <link rel="icon" href="./assets/favicon/favicon.ico" />
-  <link rel="icon" href="./assets/favicon/favicon.svg" type="image/svg+xml" />
-  <title>PackManager - v0.1</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    type="text/css" />
-  <link rel="stylesheet" href="./assets/css/bootstrap-v4.3.1.css" type="text/css" />
-  <link rel="stylesheet" href="./assets/css/bootstrap-v5.0.2.css" type="text/css" />
-  <link rel="stylesheet" href="./assets/css/style.css" type="text/css" />
-  <script type="text/vbscript">
+<html lang="en" ng-app="PacMan">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SPA for Fetch, List, Install and Uninstall chocolatey Packages" />
+    <meta name="author" content="Nickson Jeanmerson & Stefferson Thallys" />
+    <meta property="og:title" content="Package Manager - v0.1" />
+    <meta property="og:type" content="WebApp" />
+    <meta property="og:url" content="https://github.com/nicksonjean/WebAppChocoManager" />
+    <meta property="og:description" content="WebApp for Fetch, List, Install and Uninstall chocolatey Packages" />
+    <meta property="og:image" content="./assets/favicon/favicon.png" />
+    <link rel="icon" href="./assets/favicon/favicon.ico" />
+    <link rel="icon" href="./assets/favicon/favicon.svg" type="image/svg+xml" />
+    <title>Package Manager - v0.1</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="./assets/css/bootstrap-v4.3.1.css" type="text/css" />
+    <link rel="stylesheet" href="./assets/css/bootstrap-v5.0.2.css" type="text/css" />
+    <link rel="stylesheet" href="./assets/css/style.css" type="text/css" />
+    <script type="text/vbscript">
       Sub window_onload()
         'CenterWindow 520, 600
         'TheaterMode()
@@ -36,175 +34,200 @@
         self.MoveTo (screen.availWidth - widthX)/2, (screen.availHeight - heightY)/2
       End Sub
     </script>
-</head>
-
-<body>
-  <script src="./assets/js/HTAConsole.js"></script>
-  <script src="./assets/js/Ajax.js"></script>
-  <script src="./assets/js/FetchChocoRemote.js"></script>
-  <script type="text/vbscript" src="./libs/Functions.vbs"></script>
-  <script type="text/vbscript" src="./libs/Extensions/Run.vbs"></script>
-  <script type="text/vbscript" src="./Main.vbs"></script>
-  <div id="divx">
-    <button type="button" class="divxButton">File</button>
-    <button type="button" class="divxButton">Edit</button>
-    <button type="button" class="divxButton">View</button>
-    <button type="button" class="divxButton">Help</button>
-  </div>
-  <div id="divMain" class="container-fluid p-0">
-    <div class="container-xxl px-0">
-      <ctrl ng-controller="remotelyPackagesController">
-        <div class="row m-2 align-items-center">
-          <div class="col-lg-6 col-md-8 px-0 mx-auto dropdown-container">
-            <label for="packageSearch" class="m-0">Pacotes</label>
-            <div class="input-group search">
-              <input type="text" class="form-control shadow-none" id="packageSearched" placeholder="Localize Pacotes" />
-              <div class="input-group-append">
-                <button class="btn btn-primary" title="Localizar Pacotes" ng-click="doSearch()">Buscar <i
-                    class="fa fa-search"></i></button>
+  </head>
+  <body>
+    <script src="./assets/js/HTAConsole.js"></script>
+    <script src="./assets/js/Ajax.js"></script>
+    <script src="./assets/js/FetchChocoRemote.js"></script>
+    <script type="text/vbscript" src="./libs/Functions.vbs"></script>
+    <script type="text/vbscript" src="./libs/Extensions/Run.vbs"></script>
+    <script type="text/vbscript" src="./Main.vbs"></script>
+    <div id="divx">
+      <button type="button" class="divxButton">File</button>
+      <button type="button" class="divxButton">Edit</button>
+      <button type="button" class="divxButton">View</button>
+      <button type="button" class="divxButton">Help</button>
+    </div>
+    <div id="divMain" class="container-fluid p-0">
+      <div class="container-xxl px-0">
+        <ctrl ng-controller="remotelyPackagesController">
+          <div class="row m-2 align-items-center">
+            <div class="col-lg-6 col-md-8 px-0 mx-auto dropdown-container">
+              <label for="packageSearch" class="m-0">Pacotes</label>
+              <div class="input-group search">
+                <input type="text" class="form-control shadow-none" id="packageSearched" placeholder="Localize Pacotes" />
+                <div class="input-group-append">
+                  <button class="btn btn-primary" title="Localizar Pacotes" ng-click="doSearch()">Buscar <i class="fa fa-search"></i></button>
+                </div>
               </div>
+              <small id="packageSearchHelpBlock" class="form-text text-muted m-0">{{ errorMessage }}</small>
             </div>
-            <small id="packageSearchHelpBlock" class="form-text text-muted m-0">{{ errorMessage }}</small>
           </div>
-        </div>
-        <div class="row m-2 align-items-center dropdown-container">
-          <div class="col-lg-6 col-md-8 px-0 mx-auto">
-            <ul id="listSearch" class="list-group dropdown-list {{ dropdown }}">
-              <li ng-repeat="value in remotelyApps.packages"
-                class="list-group-item d-flex flex-row-reverse justify-content-between align-items-center p-0">
-                <div class="align-self-center ms-auto mx-2">
-                  <form>
-                    <input type="hidden" name="packageToInstall" value="{{ value.packageCommand }}" />
-                    <button class="btn btn-primary" title="{{ value.packageCommand }}"
-                      onclick="vbscript:Run(packageToInstall.value)">
-                      <i class="fa fa-download"></i>
-                    </button>
-                  </form>
-                </div>
-                <div class="packageName">{{ value.packageName }} - {{ value.packageVersion }}</div>
-                <div class="col-auto p-2 align-items-center d-flex justify-content-center li-img"><img
-                    src="{{ value.packageIcon }}" />
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </ctrl>
-
-      <ctrl ng-controller="installedPackagesController">
-        <div class="row align-items-center mx-0 px-1">
-          <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-1 py-1" ng-repeat="value in installedApps.packages">
-            <div class="card animation">
-              <div class="row no-gutters mx-0">
-                <div class="col-auto p-2 align-items-center d-flex justify-content-center div-img">
-                  <img src="{{ value.packageIcon }}" />
-                </div>
-                <div class="col text-left align-items-center d-flex justify-content-center">
-                  <div class="card-body pb-0 pl-0 pl-lg-0 pr-2 pt-2">
-                    <h6 class="card-title fw-normal">{{ value.packageName }} - {{ value.packageVersion }}</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer bg-white px-2">
-                <form>
-                  <div class="input-group">
-                    <input type="text" name="packageToUninstall" class="form-control shadow-none" readonly
-                      value="{{ value.packageCommand }}" />
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" title="{{ value.packageCommand }}"
-                        onclick="vbscript:Run(packageToUninstall.value)">
-                        <i class="fa fa-trash-o"></i>
+          <div class="row m-2 align-items-center dropdown-container">
+            <div class="col-lg-6 col-md-8 px-0 mx-auto">
+              <ul id="listSearch" class="list-group dropdown-list {{ dropdown }}">
+                <li ng-repeat="value in remotelyApps.packages" class="list-group-item d-flex flex-row-reverse justify-content-between align-items-center p-0">
+                  <div class="align-self-center ms-auto mx-2">
+                    <form>
+                      <input type="hidden" name="packageToInstall" value="{{ value.packageCommand }}" />
+                      <button class="btn btn-primary" title="{{ value.packageCommand }}" onclick="vbscript:Exec(packageToInstall.value)">
+                        <i class="fa fa-download"></i>
                       </button>
+                    </form>
+                  </div>
+                  <div class="packageName">{{ value.packageName }} - {{ value.packageVersion }}</div>
+                  <div class="col-auto p-2 align-items-center d-flex justify-content-center li-img"><img check-image ng-src="{{ value.packageIcon }}" /></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </ctrl>
+
+        <ctrl ng-controller="installedPackagesController">
+          <div class="row align-items-center mx-0 px-1">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-1 py-1" ng-repeat="value in installedApps.packages">
+              <div class="card animation">
+                <div class="row no-gutters mx-0">
+                  <div class="col-auto p-2 align-items-center d-flex justify-content-center div-img">
+                    <img check-image ng-src="{{ value.packageIcon }}" />
+                  </div>
+                  <div class="col text-left align-items-center d-flex justify-content-center">
+                    <div class="card-body pb-0 pl-0 pl-lg-0 pr-2 pt-2">
+                      <h6 class="card-title fw-normal">{{ value.packageName }} - {{ value.packageVersion }}</h6>
                     </div>
                   </div>
-                </form>
+                </div>
+                <div class="card-footer bg-white px-2">
+                  <form>
+                    <div class="input-group">
+                      <input type="text" name="packageToUninstall" class="form-control shadow-none" readonly value="{{ value.packageCommand }}" />
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" title="{{ value.packageCommand }}" onclick="vbscript:Exec(packageToUninstall.value)">
+                          <i class="fa fa-trash-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </ctrl>
+        </ctrl>
+      </div>
     </div>
-  </div>
-  <script type="text/javascript">
-    var app = angular.module("Marijuana", []);
-    app.controller("installedPackagesController", [
-      "$scope",
-      function ($scope) {
-        return ($scope.installedApps = JSON.parse(InstalledPackages));
-      },
-    ]);
-    app.controller("remotelyPackagesController", [
-      "$scope",
-      function ($scope) {
-        $scope.ruleSearch = function (packageSearched) {
-          $scope.remotelyApps = null;
-          if (packageSearched.trim().length === 0) {
-            $scope.dropdown = null;
-            $scope.errorMessage = "Busca não preenchida!";
-            $scope.remotelyApps = null;
-          } else if (packageSearched.trim().length <= 3) {
-            $scope.dropdown = null;
-            $scope.errorMessage = "Busca inferior a três caracteres!";
-            $scope.remotelyApps = null;
-          } else {
-            var packageName = fetchPackageList(packageSearched);
-            $("#listSearch").addClass("dropdown-menu");
-            $scope.dropdown = "dropdown-menu";
-            $scope.errorMessage = null;
-            $scope.remotelyApps = JSON.parse(RemotelyPackages);
-          }
+    <script type="text/javascript">
+      var app = angular.module("PacMan", []);
+      app.directive("onErrorSrc", function () {
+        return {
+          link: function (scope, element, attrs) {
+            element.bind("error", function () {
+              if (attrs.src != attrs.onErrorSrc) {
+                attrs.$set("src", attrs.onErrorSrc);
+              }
+            });
+
+            attrs.$observe("ngSrc", function (value) {
+              if (!value && attrs.onErrorSrc) {
+                attrs.$set("src", attrs.onErrorSrc);
+              }
+            });
+          },
+        };
+      });
+      app.directive("checkImage", function ($q) {
+        return {
+          restrict: "A",
+          link: function (scope, element, attrs) {
+            attrs.$observe("ngSrc", function (ngSrc) {
+              var deferred = $q.defer();
+              var image = new Image();
+              image.onerror = function () {
+                deferred.resolve(false);
+                element.attr("src", "https://community.chocolatey.org/Content/Images/packageDefaultIcon-50x50.png");
+              };
+              image.onload = function () {
+                deferred.resolve(true);
+              };
+              image.src = ngSrc;
+              return deferred.promise;
+            });
+          },
+        };
+      });
+      app.controller("installedPackagesController", [
+        "$scope",
+        function ($scope) {
+          $scope.defaultPackageIcon = "https://community.chocolatey.org/Content/Images/packageDefaultIcon-50x50.png";
+          $scope.installedApps = JSON.parse(InstalledPackages);
           return $scope;
-        };
-        $scope.doSearch = function () {
-          return $scope.ruleSearch(document.getElementById("packageSearched").value);
-        };
-        $scope.doInstall = function () {
-          console.log(this.value.packageCommand);
-        };
-      },
-    ]);
-  </script>
-  <script type="text/vbscript">
-    Sub Run(key)
-        MsgBox key, vbInformation, "VBScript!"
-      End Sub
-      '//var objShell = new ActiveXObject("Shell.Application");
-      '//objShell.ShellExecute("notepad.exe", "", "", "open", 1);
-  </script>
-  <script type="text/vbscript">
+        },
+      ]);
+      app.controller("remotelyPackagesController", [
+        "$scope",
+        function ($scope) {
+          $scope.ruleSearch = function (packageSearched) {
+            $scope.remotelyApps = null;
+            if (packageSearched.trim().length === 0) {
+              $scope.dropdown = null;
+              $scope.errorMessage = "Busca não preenchida!";
+              $scope.remotelyApps = null;
+            } else if (packageSearched.trim().length < 3) {
+              $scope.dropdown = null;
+              $scope.errorMessage = "Busca inferior a três caracteres!";
+              $scope.remotelyApps = null;
+            } else {
+              var packageName = fetchPackageList(packageSearched);
+              $("#listSearch").addClass("dropdown-menu");
+              $scope.dropdown = "dropdown-menu";
+              $scope.errorMessage = null;
+              $scope.remotelyApps = JSON.parse(RemotelyPackages);
+            }
+            return $scope;
+          };
+          $scope.doSearch = function () {
+            return $scope.ruleSearch(document.getElementById("packageSearched").value);
+          };
+        },
+      ]);
+    </script>
+    <script type="text/javascript">
+      /*
+      var objShell = new ActiveXObject("Shell.Application");
+      objShell.ShellExecute("notepad.exe", "", "", "open", 1);
+      */
+    </script>
+    <script type="text/vbscript">
       Sub Exec(Command)
-        ' MsgBox Command, vbInformation, "VBScript!"
         Dim ObjShell
         Set ObjShell = CreateObject("Wscript.Shell")
         ObjShell.Run Command
-
+        ' MsgBox Command, vbInformation, "VBScript!"
         ' Set ObjShell = CreateObject("Shell.Application")
         ' ObjShell.ShellExecute "wscript.exe", Chr(34) & WScript.ScriptFullName & Chr(34) & " uac", "", "runas", 1
       End Sub
     </script>
-  <!--[if gte IE 9]><!-->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script>
-    $(function () {
-      $(document).on("click", function (event) {
-        var $trigger = $(".dropdown-container");
-        if ($trigger !== event.target && !$trigger.has(event.target).length) {
-          $("#listSearch li").remove();
-          $("#listSearch").removeClass("dropdown-menu");
-        }
+    <!--[if gte IE 9]><!-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+      $(function () {
+        $(document).on("click", function (event) {
+          var $trigger = $(".dropdown-container");
+          if ($trigger !== event.target && !$trigger.has(event.target).length) {
+            $("#listSearch li").remove();
+            $("#listSearch").removeClass("dropdown-menu");
+          }
+        });
       });
-    });
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!--<![endif]-->
-  <!--[if IE 9]>
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!--<![endif]-->
+    <!--[if IE 9]>
       <script src="https://cdn.jsdelivr.net/gh/coliff/bootstrap-ie8/js/bootstrap-ie9.min.js"></script>
     <![endif]-->
-  <!--[if lte IE 8]>
+    <!--[if lte IE 8]>
       <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
       <script src="https://cdn.jsdelivr.net/gh/coliff/bootstrap-ie8/js/bootstrap-ie8.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.js"></script>
     <![endif]-->
-</body>
-
+  </body>
 </html>
