@@ -68,7 +68,10 @@ li:hover {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  text-align: center
+}
+
+#notFound {
+  text-align: center !important;
 }
 
 #listSearch {

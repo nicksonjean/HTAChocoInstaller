@@ -46,16 +46,23 @@
   <script type="text/vbscript" src="./libs/Extensions/Run.vbs"></script>
   <script type="text/vbscript" src="./Main.vbs"></script>
   <div id="divx">
-    <button type="button" class="divxButton">File</button>
+    <!-- <button type="button" class="divxButton">File</button>
     <button type="button" class="divxButton">Edit</button>
     <button type="button" class="divxButton">View</button>
-    <button type="button" class="divxButton">Help</button>
+    <button type="button" class="divxButton">Help</button> -->
+    <div class="dropdown">
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuButton3"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        View
+      </a>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+        <a id="theme" class="dropdown-item" href="#" onclick="darkMode()">Dark Mode</a>
+      </div>
+    </div>
+
   </div>
   <div id="divMain" class="container-fluid p-0">
-    <label class="switch">
-      <input onclick="darkMode()" id="checkbox" type="checkbox">
-      <span class="slider round"></span>
-    </label>
     <div class="container-xxl px-0">
       <ctrl ng-controller="remotelyPackagesController">
         <div class="row m-2 align-items-center">
@@ -97,7 +104,7 @@
                 <li
                   class="input-dark list-group-item d-flex flex-row-reverse justify-content-between align-items-center p-0">
                   <div class="align-self-center ms-auto mx-2"></div>
-                  <div class="packageName"><span id="notFound" class="ellipsis input-dark">{{
+                  <div id="notFound" class="packageName"><span class="ellipsis input-dark">{{
                       remotelyApps.packageName }}</span>
                   </div>
                   <div class="col-auto p-2 align-items-center d-flex justify-content-center li-img"></div>
@@ -226,15 +233,17 @@
   </script>
   <script type="text/javascript">
     function darkMode() {
-      var check = document.querySelector("#checkbox");
+      var theme = document.querySelector("#theme");
       var body = document.querySelector("body");
       var input = document.querySelector("#packageSearched");
       var button = document.querySelector("#buttonSearche");
       var ul = document.querySelector("#listSearch");
       var card1 = document.getElementsByClassName('card');
+      var li2 = document.querySelector("#li2");
 
-      switch (check.checked) {
+      switch (theme.innerHTML === 'Dark Mode') {
         case true:
+          theme.innerHTML = 'Light Mode';
           body.classList.add('darkTheme')
           input.classList.add('input-dark')
           input.classList.add('dark-card')
@@ -247,6 +256,7 @@
           }
           break;
         case false:
+          theme.innerHTML = 'Dark Mode';
           body.classList.remove('darkTheme')
           input.classList.remove('input-dark')
           input.classList.remove('dark-card')
@@ -288,6 +298,7 @@
       });
     });
   </script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
   <!--<![endif]-->
   <!--[if IE 9]>
@@ -299,5 +310,10 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.js"></script>
     <![endif]-->
 </body>
+<!-- Botão switch mobile -->
+<!-- <label class="switch">
+  <input onclick="darkMode()" id="checkbox" type="checkbox">
+  <span class="slider round"></span>
+</label> -->
 
 </html>
