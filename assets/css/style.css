@@ -68,6 +68,7 @@ li:hover {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  width: 78%;
 }
 
 #notFound {
@@ -81,6 +82,18 @@ li:hover {
   top: -21px !important;
 }
 
+#divx {
+  background-color: #212529;
+  position: fixed;
+  height: 40px;
+  width: 100%;
+  top: 0;
+  padding-left: 10px;
+  padding-top: 5px;
+  vertical-align: middle;
+  z-index: 9999;
+}
+
 .dropdown-menu {
   overflow-y: hidden;
   min-height: 62px;
@@ -91,33 +104,58 @@ li:hover {
   overflow-y: auto;
 }
 
+.div-drop {
+  vertical-align: middle;
+  display: flex;
+}
+
+.btn-group-none {
+  border-radius: 0.25rem !important;
+}
+
+.dropdownMenuButton {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-size: 11pt !important;
+  padding: 1px 4px 1px 4px !important;
+  height: 25px !important;
+  vertical-align: middle !important;
+  text-align: center !important;
+  margin-right: 10px;
+}
+
+.dropdownMenuButton:hover {
+  background-color: #6c757d !important;
+}
+
+.dropteste {
+  background-color: #6c757d !important;
+  padding: 2px 8px 2px 8px !important;
+  margin: 0 !important;
+  width: auto !important;
+  min-height: 15px !important;
+  min-width: 60px !important;
+}
+
+.theme {
+  color: #fff !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 12pt !important;
+}
+
 #packageSearchHelpBlock {
   height: 21px;
-}
-
-.packageName {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-#divx {
-  background-color: #212529;
-  position: fixed;
-  height: 40px;
-  width: 100%;
-  top: 0;
-  padding-left: 10px;
-  padding-top: 7px;
-  vertical-align: middle;
-  z-index: 9999;
 }
 
 #divMain {
   margin-top: 80px;
 }
 
-.divxButton {
+/* .divxButton {
   display: inline-block;
   font-weight: 400;
   line-height: 1.5;
@@ -137,13 +175,13 @@ li:hover {
   float: left;
   margin-right: 8px;
   color: #fff;
-}
+} */
 
-.divxButton:hover {
+/* .divxButton:hover {
   color: #fff;
   background-color: #5c636a;
   border-color: #565e64;
-}
+} */
 
 #scroll-bar {
   overflow-y: auto;
@@ -182,9 +220,6 @@ li:hover {
   zoom: 1;
 }
 
-.packageName {
-  width: 78%;
-}
 .ellipsis {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -222,7 +257,7 @@ li:hover {
   background-color: rgba(146, 146, 146, 0.2) !important;
 }
 
-.switch {
+/* .switch {
   position: relative;
   display: inline-block;
   width: 60px;
@@ -257,9 +292,9 @@ li:hover {
   background-color: white;
   -webkit-transition: 0.4s;
   transition: 0.4s;
-}
+} */
 
-input:checked + .slider {
+/* input:checked + .slider {
   background-color: #0b5ed7;
 }
 
@@ -267,13 +302,13 @@ input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
-}
+} */
 
 /* Rounded sliders */
-.slider.round {
+/* .slider.round {
   border-radius: 26px;
 }
 
 .slider.round:before {
   border-radius: 50%;
-}
+} */

@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="PacMan">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="SPA for Fetch, List, Install and Uninstall chocolatey Packages" />
-    <meta name="author" content="Nickson Jeanmerson & Stefferson Thallys" />
-    <meta property="og:title" content="Package Manager - v0.1" />
-    <meta property="og:type" content="WebApp" />
-    <meta property="og:url" content="https://github.com/nicksonjean/WebAppChocoManager" />
-    <meta property="og:description" content="WebApp for Fetch, List, Install and Uninstall chocolatey Packages" />
-    <meta property="og:image" content="./assets/favicon/favicon.png" />
-    <link rel="icon" href="./assets/favicon/favicon.ico" />
-    <link rel="icon" href="./assets/favicon/favicon.svg" type="image/svg+xml" />
-    <title>Package Manager - v0.1</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-    <script src="https://cdn.rawgit.com/zachsnow/ng-elif/4f9cf12c46dca340de2d784f0a2be5e4bebaf1ff/src/elif.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
-    <link rel="stylesheet" href="./assets/css/bootstrap-v4.3.1.css" type="text/css" />
-    <link rel="stylesheet" href="./assets/css/bootstrap-v5.0.2.css" type="text/css" />
-    <link rel="stylesheet" href="./assets/css/style.css" type="text/css" />
-    <script type="text/vbscript">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SPA for Fetch, List, Install and Uninstall chocolatey Packages" />
+  <meta name="author" content="Nickson Jeanmerson & Stefferson Thallys" />
+  <meta property="og:title" content="Package Manager - v0.1" />
+  <meta property="og:type" content="WebApp" />
+  <meta property="og:url" content="https://github.com/nicksonjean/WebAppChocoManager" />
+  <meta property="og:description" content="WebApp for Fetch, List, Install and Uninstall chocolatey Packages" />
+  <meta property="og:image" content="./assets/favicon/favicon.png" />
+  <link rel="icon" href="./assets/favicon/favicon.ico" />
+  <link rel="icon" href="./assets/favicon/favicon.svg" type="image/svg+xml" />
+  <title>Package Manager - v0.1</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script src="https://cdn.rawgit.com/zachsnow/ng-elif/4f9cf12c46dca340de2d784f0a2be5e4bebaf1ff/src/elif.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    type="text/css" />
+  <link rel="stylesheet" href="./assets/css/bootstrap-v4.3.1.css" type="text/css" />
+  <link rel="stylesheet" href="./assets/css/bootstrap-v5.0.2.css" type="text/css" />
+  <link rel="stylesheet" href="./assets/css/style.css" type="text/css" />
+  <script type="text/vbscript">
       Sub window_onload()
         'CenterWindow 520, 600
         'TheaterMode()
@@ -35,312 +37,355 @@
         self.MoveTo (screen.availWidth - widthX)/2, (screen.availHeight - heightY)/2
       End Sub
     </script>
-  </head>
+</head>
 
-  <body ng-controller="mainController" capture-click="onCaptured($event)">
-    <script src="./assets/js/HTAConsole.js"></script>
-    <script src="./assets/js/Ajax.js"></script>
-    <script src="./assets/js/FetchChocoRemote.js"></script>
-    <script type="text/vbscript" src="./libs/Functions.vbs"></script>
-    <script type="text/vbscript" src="./libs/Extensions/Run.vbs"></script>
-    <script type="text/vbscript" src="./Main.vbs"></script>
-    <div id="divx">
-      <!-- <button type="button" class="divxButton">File</button>
-    <button type="button" class="divxButton">Edit</button>
-    <button type="button" class="divxButton">View</button>
-    <button type="button" class="divxButton">Help</button> -->
-      <div class="dropdown">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> View </a>
-
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-          <a id="theme" class="dropdown-item" href="#" onclick="darkMode()">Dark Mode</a>
+<body ng-controller="mainController" capture-click="onCaptured($event)">
+  <script src="./assets/js/HTAConsole.js"></script>
+  <script src="./assets/js/Ajax.js"></script>
+  <script src="./assets/js/FetchChocoRemote.js"></script>
+  <script type="text/vbscript" src="./libs/Functions.vbs"></script>
+  <script type="text/vbscript" src="./libs/Extensions/Run.vbs"></script>
+  <script type="text/vbscript" src="./Main.vbs"></script>
+  <div id="divx">
+    <div class="btn-group">
+      <button type="button" class="btn-group-none btn btn-secondary dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Arquivo
+      </button>
+      <div class="dropdown-menu dropteste">
+        <a class="dropdown-item theme" href="#">Option-1</a>
+        <a class="dropdown-item theme" href="#">Option-2</a>
+        <a class="dropdown-item theme" href="#">Option-3</a>
+        <a class="dropdown-item theme" href="#">Option-4</a>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn-group-none btn btn-secondary dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Editar
+      </button>
+      <div class="dropdown-menu dropteste">
+        <a class="dropdown-item theme" href="#">Option-1</a>
+        <a class="dropdown-item theme" href="#">Option-2</a>
+        <a class="dropdown-item theme" href="#">Option-3</a>
+        <a class="dropdown-item theme" href="#">Option-4</a>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn-group-none btn btn-secondary dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Exibir
+      </button>
+      <div class="dropdown-menu dropteste">
+        <a id="theme" class="dropdown-item theme" href="#" onclick="darkMode()">Dark Mode</a>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn-group-none btn btn-secondary dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Ajuda
+      </button>
+      <div class="dropdown-menu dropteste">
+        <a class="dropdown-item theme" href="#">Option-1</a>
+        <a class="dropdown-item theme" href="#">Option-2</a>
+        <a class="dropdown-item theme" href="#">Option-3</a>
+        <a class="dropdown-item theme" href="#">Option-4</a>
+      </div>
+    </div>
+  </div>
+  <div id="divMain" class="container-fluid p-0">
+    <div class="container-xxl px-0">
+      <ctrl ng-controller="remotelyPackagesController">
+        <div class="row m-2 align-items-center">
+          <div class="col-lg-6 col-md-8 px-0 mx-auto dropdown-container">
+            <label for="packageSearch" class="m-0">Pacotes</label>
+            <div class="input-group search">
+              <input type="text" class="form-control" id="packageSearched" placeholder="Localize Pacotes" />
+              <div class="input-group-append">
+                <button class="btn btn-primary" title="Localizar Pacotes" id="buttonSearche" ng-toggle="packageFinded"
+                  ng-click="doSearch()">Buscar <i class="fa fa-search"></i></button>
+              </div>
+            </div>
+            <small id="packageSearchHelpBlock" class="form-text text-muted m-0">{{ errorMessage }}</small>
+          </div>
         </div>
-      </div>
-    </div>
-    <div id="divMain" class="container-fluid p-0">
-      <div class="container-xxl px-0">
-        <ctrl ng-controller="remotelyPackagesController">
-          <div class="row m-2 align-items-center">
-            <div class="col-lg-6 col-md-8 px-0 mx-auto dropdown-container">
-              <label for="packageSearch" class="m-0">Pacotes</label>
-              <div class="input-group search">
-                <input type="text" class="form-control" id="packageSearched" placeholder="Localize Pacotes" />
-                <div class="input-group-append">
-                  <button class="btn btn-primary" title="Localizar Pacotes" id="buttonSearche" ng-toggle="packageFinded" ng-click="doSearch()">Buscar <i class="fa fa-search"></i></button>
+        <div class="row m-2 align-items-center dropdown-container">
+          <div class="col-lg-6 col-md-8 px-0 mx-auto">
+            <ul id="listSearch" class="list-group dropdown-list {{ dropdown }}">
+              <if ng-if="packageFinded === true">
+                <li ng-repeat="value in remotelyApps.packages"
+                  class="input-dark list-group-item d-flex flex-row-reverse justify-content-between align-items-center p-0">
+                  <div class="align-self-center ms-auto mx-2">
+                    <form>
+                      <input type="hidden" name="packageToInstall" value="{{ value.packageCommand }}" />
+                      <button class="btn btn-primary" title="{{ value.packageCommand }}"
+                        onclick="vbscript:Exec(packageToInstall.value)">
+                        <i class="fa fa-download"></i>
+                      </button>
+                    </form>
+                  </div>
+                  <div class="packageName"><span class="ellipsis">{{ value.packageName }} - {{ value.packageVersion
+                      }}</span></div>
+                  <div class="input-dark col-auto p-2 align-items-center d-flex justify-content-center li-img"><img
+                      check-image ng-src="{{ value.packageIcon }}" /></div>
+                </li>
+              </if>
+              <if ng-else-if="packageFinded === false">
+                <li
+                  class="input-dark list-group-item d-flex flex-row-reverse justify-content-between align-items-center p-0">
+                  <div class="align-self-center ms-auto mx-2"></div>
+                  <div id="notFound" class="packageName"><span class="ellipsis input-dark">{{ nonePackage }}</span>
+                  </div>
+                  <div class="col-auto p-2 align-items-center d-flex justify-content-center li-img"></div>
+                </li>
+              </if>
+            </ul>
+          </div>
+        </div>
+      </ctrl>
+
+      <ctrl ng-controller="installedPackagesController">
+        <div class="row align-items-center mx-0 px-1">
+          <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-1 py-1" ng-repeat="value in installedApps.packages">
+            <div id="dark-card" class="card animation">
+              <div class="row no-gutters mx-0">
+                <div class="col-auto p-2 align-items-center d-flex justify-content-center div-img">
+                  <img check-image ng-src="{{ value.packageIcon }}" />
+                </div>
+                <div class="col text-left align-items-center d-flex justify-content-center">
+                  <div class="card-body pb-0 pl-0 pl-lg-0 pr-2 pt-2">
+                    <h6 class="card-title fw-normal">{{ value.packageName }} - {{ value.packageVersion }}</h6>
+                  </div>
                 </div>
               </div>
-              <small id="packageSearchHelpBlock" class="form-text text-muted m-0">{{ errorMessage }}</small>
-            </div>
-          </div>
-          <div class="row m-2 align-items-center dropdown-container">
-            <div class="col-lg-6 col-md-8 px-0 mx-auto">
-              <ul id="listSearch" class="list-group dropdown-list {{ dropdown }}">
-                <if ng-if="packageFinded === true">
-                  <li ng-repeat="value in remotelyApps.packages" class="input-dark list-group-item d-flex flex-row-reverse justify-content-between align-items-center p-0">
-                    <div class="align-self-center ms-auto mx-2">
-                      <form>
-                        <input type="hidden" name="packageToInstall" value="{{ value.packageCommand }}" />
-                        <button class="btn btn-primary" title="{{ value.packageCommand }}" onclick="vbscript:Exec(packageToInstall.value)">
-                          <i class="fa fa-download"></i>
-                        </button>
-                      </form>
-                    </div>
-                    <div class="packageName"><span class="ellipsis">{{ value.packageName }} - {{ value.packageVersion }}</span></div>
-                    <div class="input-dark col-auto p-2 align-items-center d-flex justify-content-center li-img"><img check-image ng-src="{{ value.packageIcon }}" /></div>
-                  </li>
-                </if>
-                <if ng-else-if="packageFinded === false">
-                  <li class="input-dark list-group-item d-flex flex-row-reverse justify-content-between align-items-center p-0">
-                    <div class="align-self-center ms-auto mx-2"></div>
-                    <div id="notFound" class="packageName"><span class="ellipsis input-dark">{{ nonePackage }}</span></div>
-                    <div class="col-auto p-2 align-items-center d-flex justify-content-center li-img"></div>
-                  </li>
-                </if>
-              </ul>
-            </div>
-          </div>
-        </ctrl>
-
-        <ctrl ng-controller="installedPackagesController">
-          <div class="row align-items-center mx-0 px-1">
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 px-1 py-1" ng-repeat="value in installedApps.packages">
-              <div id="dark-card" class="card animation">
-                <div class="row no-gutters mx-0">
-                  <div class="col-auto p-2 align-items-center d-flex justify-content-center div-img">
-                    <img check-image ng-src="{{ value.packageIcon }}" />
-                  </div>
-                  <div class="col text-left align-items-center d-flex justify-content-center">
-                    <div class="card-body pb-0 pl-0 pl-lg-0 pr-2 pt-2">
-                      <h6 class="card-title fw-normal">{{ value.packageName }} - {{ value.packageVersion }}</h6>
+              <div class="card-footer bg-transparent px-2">
+                <form>
+                  <div class="div-grey input-dark input-group">
+                    <input type="text" name="packageToUninstall" class="input-dark form-control shadow-none" readonly
+                      value="{{ value.packageCommand }}" />
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" title="{{ value.packageCommand }}"
+                        onclick="vbscript:Exec(packageToUninstall.value)">
+                        <i class="fa fa-trash-o"></i>
+                      </button>
                     </div>
                   </div>
-                </div>
-                <div class="card-footer bg-transparent px-2">
-                  <form>
-                    <div class="div-grey input-dark input-group">
-                      <input type="text" name="packageToUninstall" class="input-dark form-control shadow-none" readonly value="{{ value.packageCommand }}" />
-                      <div class="input-group-append">
-                        <button class="btn btn-primary" title="{{ value.packageCommand }}" onclick="vbscript:Exec(packageToUninstall.value)">
-                          <i class="fa fa-trash-o"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
+                </form>
               </div>
             </div>
           </div>
-        </ctrl>
-      </div>
+        </div>
+      </ctrl>
     </div>
-    <script type="text/javascript">
-      var app = angular.module("PacMan", ["elif"]),
-        defIcon = "https://community.chocolatey.org/Content/Images/packageDefaultIcon-50x50.png";
+  </div>
+  <script type="text/javascript">
+    var app = angular.module("PacMan", ["elif"]),
+      defIcon = "https://community.chocolatey.org/Content/Images/packageDefaultIcon-50x50.png";
 
-      app.directive("onErrorSrc", function () {
-        return {
-          link: function (scope, element, attrs) {
-            element.bind("error", function () {
-              if (attrs.src != attrs.onErrorSrc) {
-                attrs.$set("src", attrs.onErrorSrc);
-              }
-            });
+    app.directive("onErrorSrc", function () {
+      return {
+        link: function (scope, element, attrs) {
+          element.bind("error", function () {
+            if (attrs.src != attrs.onErrorSrc) {
+              attrs.$set("src", attrs.onErrorSrc);
+            }
+          });
 
-            attrs.$observe("ngSrc", function (value) {
-              if (!value && attrs.onErrorSrc) {
-                attrs.$set("src", attrs.onErrorSrc);
-              }
-            });
-          },
-        };
-      });
-      app.directive("checkImage", function ($q) {
-        return {
-          restrict: "A",
-          link: function (scope, element, attrs) {
-            attrs.$observe("ngSrc", function (ngSrc) {
-              var deferred = $q.defer();
-              var image = new Image();
-              image.onerror = function () {
-                deferred.resolve(false);
-                element.attr("src", defIcon);
-              };
-              image.onload = function () {
-                deferred.resolve(true);
-              };
-              image.src = ngSrc;
-              return deferred.promise;
-            });
-          },
-        };
-      });
-      app.directive("captureClick", function ($parse) {
-        return {
-          restrict: "A",
-          compile: function (element, attrs) {
-            var fn = $parse(attrs.captureClick);
-            return function (scope, element) {
-              element[0].addEventListener(
-                "click",
-                function (event) {
-                  scope.$apply(function () {
-                    fn(scope, {
-                      $event: event,
-                    });
-                  });
-                },
-                true
-              );
+          attrs.$observe("ngSrc", function (value) {
+            if (!value && attrs.onErrorSrc) {
+              attrs.$set("src", attrs.onErrorSrc);
+            }
+          });
+        },
+      };
+    });
+    app.directive("checkImage", function ($q) {
+      return {
+        restrict: "A",
+        link: function (scope, element, attrs) {
+          attrs.$observe("ngSrc", function (ngSrc) {
+            var deferred = $q.defer();
+            var image = new Image();
+            image.onerror = function () {
+              deferred.resolve(false);
+              element.attr("src", defIcon);
             };
+            image.onload = function () {
+              deferred.resolve(true);
+            };
+            image.src = ngSrc;
+            return deferred.promise;
+          });
+        },
+      };
+    });
+    app.directive("captureClick", function ($parse) {
+      return {
+        restrict: "A",
+        compile: function (element, attrs) {
+          var fn = $parse(attrs.captureClick);
+          return function (scope, element) {
+            element[0].addEventListener(
+              "click",
+              function (event) {
+                scope.$apply(function () {
+                  fn(scope, {
+                    $event: event,
+                  });
+                });
+              },
+              true
+            );
+          };
+        },
+      };
+    });
+    app.directive("ngToggle", [
+      "$parse",
+      function ($parse) {
+        return {
+          restrict: "A",
+          link: function (scope, element, attrs) {
+            var modelFn = $parse(attrs.ngToggle);
+            element.on("click", function () {
+              scope.$apply(function () {
+                modelFn.assign(scope, !modelFn(scope));
+              });
+            });
+            scope.$watch(modelFn, function (value) {
+              element.toggleClass("toggled", !!value);
+            });
           },
         };
-      });
-      app.directive("ngToggle", [
-        "$parse",
-        function ($parse) {
-          return {
-            restrict: "A",
-            link: function (scope, element, attrs) {
-              var modelFn = $parse(attrs.ngToggle);
-              element.on("click", function () {
-                scope.$apply(function () {
-                  modelFn.assign(scope, !modelFn(scope));
-                });
-              });
-              scope.$watch(modelFn, function (value) {
-                element.toggleClass("toggled", !!value);
-              });
-            },
-          };
-        },
-      ]);
-      app.controller("mainController", [
-        "$scope",
-        "$rootScope",
-        "$document",
-        function ($scope, $rootScope, $document) {
-          $scope.onBubbled = function (event) {};
-          $scope.onCaptured = function (event) {
-            var $trigger = $document[0].querySelector(".dropdown-container");
-            function childOf(c, p) {
-              while ((c = c.parentNode) && c !== p);
-              return !!c;
-            }
-            if ($trigger !== event.target && !childOf(event.target, $trigger)) {
-              angular.element($document[0].querySelectorAll("#listSearch li")).remove();
-              $rootScope.dropdown = null;
-            }
-          };
-        },
-      ]);
-      app.controller("installedPackagesController", [
-        "$scope",
-        "$http",
-        function ($scope, $http) {
-          // var thisCtrl = this;
+      },
+    ]);
+    app.controller("mainController", [
+      "$scope",
+      "$rootScope",
+      "$document",
+      function ($scope, $rootScope, $document) {
+        $scope.onBubbled = function (event) { };
+        $scope.onCaptured = function (event) {
+          var $trigger = $document[0].querySelector(".dropdown-container");
+          function childOf(c, p) {
+            while ((c = c.parentNode) && c !== p);
+            return !!c;
+          }
+          if ($trigger !== event.target && !childOf(event.target, $trigger)) {
+            angular.element($document[0].querySelectorAll("#listSearch li")).remove();
+            $rootScope.dropdown = null;
+          }
+        };
+      },
+    ]);
+    app.controller("installedPackagesController", [
+      "$scope",
+      "$http",
+      function ($scope, $http) {
+        // var thisCtrl = this;
 
-          // this.getData = function () {
-          //   this.route = "http://localhost/Projetos/Web/HTAChocoInstaller/i18n/en.json";
-          //   $http
-          //     .get(thisCtrl.route)
-          //     .success(function (data) {
-          //       console.log(JSON.stringify(data));
-          //     })
-          //     .error(function (data) {
-          //       console.log("Error getting data from " + thisCtrl.route);
-          //     });
-          // };
+        // this.getData = function () {
+        //   this.route = "http://localhost/Projetos/Web/HTAChocoInstaller/i18n/en.json";
+        //   $http
+        //     .get(thisCtrl.route)
+        //     .success(function (data) {
+        //       console.log(JSON.stringify(data));
+        //     })
+        //     .error(function (data) {
+        //       console.log("Error getting data from " + thisCtrl.route);
+        //     });
+        // };
 
-          // this.getData();
+        // this.getData();
 
-          $scope.defaultPackageIcon = defIcon;
-          $scope.installedApps = JSON.parse(InstalledPackages);
-          return $scope;
-        },
-      ]);
-      app.controller("remotelyPackagesController", [
-        "$scope",
-        "$rootScope",
-        function ($scope, $rootScope) {
-          $scope.nonePackage = null;
-          $scope.packageFinded = null;
-          $scope.remotelyApps = null;
-          $scope.ruleSearch = function (packageSearched) {
-            if (packageSearched.trim().length === 0) {
-              $scope.errorMessage = "Busca não preenchida!";
-              $scope.remotelyApps = null;
-            } else if (packageSearched.trim().length < 3) {
-              $scope.errorMessage = "Busca inferior a três caracteres!";
-              $scope.remotelyApps = null;
+        $scope.defaultPackageIcon = defIcon;
+        $scope.installedApps = JSON.parse(InstalledPackages);
+        return $scope;
+      },
+    ]);
+    app.controller("remotelyPackagesController", [
+      "$scope",
+      "$rootScope",
+      function ($scope, $rootScope) {
+        $scope.nonePackage = null;
+        $scope.packageFinded = null;
+        $scope.remotelyApps = null;
+        $scope.ruleSearch = function (packageSearched) {
+          if (packageSearched.trim().length === 0) {
+            $scope.errorMessage = "Busca não preenchida!";
+            $scope.remotelyApps = null;
+          } else if (packageSearched.trim().length < 3) {
+            $scope.errorMessage = "Busca inferior a três caracteres!";
+            $scope.remotelyApps = null;
+          } else {
+            var packageName = fetchPackageList(packageSearched);
+            $scope.errorMessage = null;
+            $rootScope.dropdown = "dropdown-menu";
+            if (RemotelyPackages.length > 34) {
+              $scope.packageFinded = true;
+              $scope.remotelyApps = JSON.parse(RemotelyPackages);
             } else {
-              var packageName = fetchPackageList(packageSearched);
-              $scope.errorMessage = null;
-              $rootScope.dropdown = "dropdown-menu";
-              if (RemotelyPackages.length > 34) {
-                $scope.packageFinded = true;
-                $scope.remotelyApps = JSON.parse(RemotelyPackages);
-              } else {
-                $scope.packageFinded = false;
-                $scope.nonePackage = "Nenhum Pacote Encontrado";
-                $scope.remotelyApps = null;
-              }
+              $scope.packageFinded = false;
+              $scope.nonePackage = "Nenhum Pacote Encontrado";
+              $scope.remotelyApps = null;
             }
-            return $scope;
-          };
-          $scope.doSearch = function () {
-            return $scope.ruleSearch(document.getElementById("packageSearched").value);
-          };
-        },
-      ]);
-    </script>
-    <script type="text/javascript">
-      var userLang = navigator.language || navigator.userLanguage;
-      console.log("The language is: " + userLang);
+          }
+          return $scope;
+        };
+        $scope.doSearch = function () {
+          return $scope.ruleSearch(document.getElementById("packageSearched").value);
+        };
+      },
+    ]);
+  </script>
+  <script type="text/javascript">
+    var userLang = navigator.language || navigator.userLanguage;
+    console.log("The language is: " + userLang);
 
-      function darkMode() {
-        var theme = document.querySelector("#theme");
-        var body = document.querySelector("body");
-        var input = document.querySelector("#packageSearched");
-        var button = document.querySelector("#buttonSearche");
-        var ul = document.querySelector("#listSearch");
-        var card1 = document.getElementsByClassName("card");
-        var li2 = document.querySelector("#li2");
+    function darkMode() {
+      var theme = document.querySelector("#theme");
+      var body = document.querySelector("body");
+      var input = document.querySelector("#packageSearched");
+      var button = document.querySelector("#buttonSearche");
+      var ul = document.querySelector("#listSearch");
+      var card1 = document.getElementsByClassName("card");
+      var li2 = document.querySelector("#li2");
 
-        switch (theme.innerHTML === "Dark Mode") {
-          case true:
-            theme.innerHTML = "Light Mode";
-            body.classList.add("darkTheme");
-            input.classList.add("input-dark");
-            input.classList.add("dark-card");
-            button.classList.add("dark-card");
-            ul.classList.add("darkThemeUl");
-            if (card1.length > 0) {
-              for (var i = 0; i < card1.length; i++) {
-                card1[i].classList.add("dark-card");
-              }
+      switch (theme.innerHTML === "Dark Mode") {
+        case true:
+          theme.innerHTML = "Light Mode";
+          body.classList.add("darkTheme");
+          input.classList.add("input-dark");
+          input.classList.add("dark-card");
+          button.classList.add("dark-card");
+          ul.classList.add("darkThemeUl");
+          if (card1.length > 0) {
+            for (var i = 0; i < card1.length; i++) {
+              card1[i].classList.add("dark-card");
             }
-            break;
-          case false:
-            theme.innerHTML = "Dark Mode";
-            body.classList.remove("darkTheme");
-            input.classList.remove("input-dark");
-            input.classList.remove("dark-card");
-            button.classList.remove("dark-card");
-            ul.classList.remove("darkThemeUl");
-            if (card1.length > 0) {
-              for (var i = 0; i < card1.length; i++) {
-                card1[i].classList.remove("dark-card");
-              }
+          }
+          break;
+        case false:
+          theme.innerHTML = "Dark Mode";
+          body.classList.remove("darkTheme");
+          input.classList.remove("input-dark");
+          input.classList.remove("dark-card");
+          button.classList.remove("dark-card");
+          ul.classList.remove("darkThemeUl");
+          if (card1.length > 0) {
+            for (var i = 0; i < card1.length; i++) {
+              card1[i].classList.remove("dark-card");
             }
-            break;
-        }
+          }
+          break;
       }
+    }
       /*
-    var objShell = new ActiveXObject("Shell.Application");
-    objShell.ShellExecute("notepad.exe", "", "", "open", 1);
-    */
-    </script>
-    <script type="text/vbscript">
+  var objShell = new ActiveXObject("Shell.Application");
+  objShell.ShellExecute("notepad.exe", "", "", "open", 1);
+  */
+  </script>
+  <script type="text/vbscript">
       Sub Exec(Command)
         Dim ObjShell
         Set ObjShell = CreateObject("Wscript.Shell")
@@ -350,22 +395,23 @@
         ' ObjShell.ShellExecute "wscript.exe", Chr(34) & WScript.ScriptFullName & Chr(34) & " uac", "", "runas", 1
       End Sub
     </script>
-    <!--[if gte IE 9]><!-->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!--<![endif]-->
-    <!--[if IE 9]>
+  <!--[if gte IE 9]><!-->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!--<![endif]-->
+  <!--[if IE 9]>
       <script src="https://cdn.jsdelivr.net/gh/coliff/bootstrap-ie8/js/bootstrap-ie9.min.js"></script>
     <![endif]-->
-    <!--[if lte IE 8]>
+  <!--[if lte IE 8]>
       <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
       <script src="https://cdn.jsdelivr.net/gh/coliff/bootstrap-ie8/js/bootstrap-ie8.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.js"></script>
     <![endif]-->
-  </body>
-  <!-- Botão switch mobile -->
-  <!-- <label class="switch">
+</body>
+<!-- Botão switch mobile -->
+<!-- <label class="switch">
   <input onclick="darkMode()" id="checkbox" type="checkbox">
   <span class="slider round"></span>
 </label> -->
+
 </html>
