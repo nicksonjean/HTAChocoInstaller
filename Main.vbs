@@ -9,23 +9,30 @@
 ' Call Require("./libs/Functions.vbs")
 ' Call Require("./libs/Extensions/Run.vbs")
 
-Function RunCMDAndWaitSync()
-  Dim Instance, ExportedCMDAndWaitSync, RegEx, Match, Matches, PackageList, PackageNumber, JSONObj, ArrayObj, TextLine, TextColumn, EachLine, Line, IIfIcon, PackageIcon, DefaultIcon, Extension, Command, Argument
+Function RunCMDAndWaitSyncList()
+  Dim Instance, ReturnList, RegEx, Match, Matches, PackageList, PackageNumber, JSONObj, ArrayObj, TextLine, TextColumn, EachLine, Line, IIfIcon, PackageIcon, DefaultIcon, Extension, Command, Argument
+
+  Const TemporaryFolder = 2
+  Dim FSO: Set FSO = CreateObject("Scripting.FileSystemObject")
+  Dim TempFolder: TempFolder = FSO.GetSpecialFolder(TemporaryFolder) & "\"
+
   Set Instance = New Run
-  ExportedCMDAndWaitSync = Instance.CMDAndWaitSync("choco list --local-only", ".apps")
+  ReturnList = Instance.CMDAndWaitSync("choco list --local-only", TempFolder & ".apps")
 
   Set RegEx = New RegExp
   RegEx.MultiLine = True
   RegEx.Pattern = "((\d{1,3})\spackages\sinstalled\.)((.*\n*){1,})"
-  Set Matches = RegEx.Execute(ExportedCMDAndWaitSync)
+  Set Matches = RegEx.Execute(ReturnList)
   Set Match = Matches(0)
 
   PackageNumber = Match.SubMatches(1)
-  PackageList = RegEx.Replace(ExportedCMDAndWaitSync, "")
+  PackageList = RegEx.Replace(ReturnList, "")
   DefaultChocoURL = "https://community.chocolatey.org/"
   RepositoryIcon = DefaultChocoURL & "content/packageimages/"
   Command = "choco uninstall "
   Argument = " -x"
+
+  Dim InstanceInfo, ReturnInfo, RegExInfo, MatchInfo, MatchesInfo, PackageName, PackageTitle
 
   TextLine = Split(PackageList, vbCrLf)
   TextLine = Slice(TextLine, 1, -1)
@@ -52,9 +59,20 @@ Function RunCMDAndWaitSync()
       Else
         IIfIcon = DefaultIcon
       End IF
+
+      Set InstanceInfo = New Run
+      ReturnInfo = Instance.CMDAndWaitSync("choco info " & TextColumn(0), TempFolder & "." & TextColumn(0))
+      Set RegExInfo = New RegExp
+      RegExInfo.MultiLine = True
+      RegExInfo.Global = True
+      RegExInfo.Pattern = "Title:\s([\w+\d+\s+\(\-\)\.\[\]]+)"
+      Set MatchesInfo = RegExInfo.Execute(ReturnInfo)
+      Set MatchInfo = MatchesInfo(0)
+      PackageTitle = Trim(MatchInfo.SubMatches(0))
+
       ArrayObj = ""
       ArrayObj = ArrayObj & "{"
-      ArrayObj = ArrayObj & Chr(34) & "packageName" & Chr(34) & ":" & Chr(34) & TextColumn(0) & Chr(34) & ","
+      ArrayObj = ArrayObj & Chr(34) & "packageName" & Chr(34) & ":" & Chr(34) & PackageTitle & Chr(34) & ","
       ArrayObj = ArrayObj & Chr(34) & "packageVersion" & Chr(34) & ":" & Chr(34) & TextColumn(1) & Chr(34) & ","
       ArrayObj = ArrayObj & Chr(34) & "packageIcon" & Chr(34) & ":" & Chr(34) & IIfIcon & Chr(34) & ","
       ArrayObj = ArrayObj & Chr(34) & "packageCommand" & Chr(34) & ":" & Chr(34) & Command & TextColumn(0) & Argument & Chr(34)
@@ -71,10 +89,10 @@ Function RunCMDAndWaitSync()
   End If
   JSONObj = JSONObj & Chr(34) & "package_lenght" & Chr(34) & ":" & PackageNumber & ""  
   JSONObj = JSONObj & "}"
-  RunCMDAndWaitSync = JSONObj
+  RunCMDAndWaitSyncList = JSONObj
   Set Instance = Nothing
 End Function
 
 Dim InstalledPackages
-InstalledPackages = RunCMDAndWaitSync()
+InstalledPackages = RunCMDAndWaitSyncList()
 ' Wscript.Echo InstalledPackages

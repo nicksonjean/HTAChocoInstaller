@@ -57,7 +57,7 @@ Class Run
       If RetCode = 0 Then
         Do While Not FSO.FileExists(OutputPathName)
           ' WScript.Sleep 500
-          SubSleep 2
+          SubSleep 3
         Loop
         if FSO.FileExists(OutputPathName) then
           Do
